@@ -11,5 +11,5 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    //ed
+    //a7la msa 3 4ma4emo
 }
