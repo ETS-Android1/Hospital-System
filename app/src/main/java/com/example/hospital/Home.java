@@ -1,60 +1,29 @@
 package com.example.hospital;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ZoomButtonsController;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Home extends AppCompatActivity {
-    public static String ip = "192.168.43.50";
-    public  static String port = "1433";
-    public static String Classes = "net.sourceforge.jtds.jdbc.Driver";
-    public static String dataBase = "TheHospital";
-    public static String userName = "mustafa";
-    public static String passWord = "123456";
-    public static String url = "jdbc:jtds:sqlserver://" + ip + ":" + port + "/" + dataBase;
     public Set<String> speciality = new HashSet<>();
     public final int COL = 2;
     public int width = 150,height = 150;
     public ArrayList<ImageButton> buttonArrayList = new ArrayList<>();
-
-    private Connection connection = null;
 
     private TextView textView;
 
@@ -69,22 +38,20 @@ public class Home extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        setConnection();
         testDynamic();
     }
+
     public void testDynamic()
     {
-        if(connection != null)
+        if(DataBase.connection != null)
         {
             try {
                 int col = -1;
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("select specialty from Doctor");
+                ResultSet resultSet = DataBase.excutQuery("select specialty from Doctor",this);
                 TableLayout tableLayout = (TableLayout)findViewById(R.id.buttons);
                 TableRow tableRow = new TableRow(this);
 
-                while (resultSet.next())
-                {
+                while (resultSet.next()){
                     col =  ++col % COL;
                     if(col == 0)
                     {
@@ -137,9 +104,8 @@ public class Home extends AppCompatActivity {
                             clickButton(specialities);
                         }
                     });
-
-
                 }
+
                 while(col < COL)
                 {
                     ImageButton imageButton = new ImageButton(this);
@@ -162,29 +128,12 @@ public class Home extends AppCompatActivity {
         {
             textView.setText("No Connection");
         }
-
-
     }
+
     public void clickButton(String speciality)
     {
         Intent intent = new Intent(this,DoctorsActivity.class);
         intent.putExtra("speciality",speciality);
         startActivity(intent);
     }
-
-    public void setConnection()
-    {
-        try {
-            Class.forName(Classes);
-            connection = DriverManager.getConnection(url,userName,passWord);
-            textView.setText("Connected Successfully");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            textView.setText("Error");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            textView.setText(e.getMessage());
-        }
-    }
-
 }
