@@ -1,3 +1,38 @@
 <resources>
     <string name="app_name">Hospital</string>
+
+    <string name="todo">TODO</string>
+    <string name="todoo">TOD</string>
+    <string name="profileimgg">profile</string>
+    <string name="id">imguser</string>
+    <string name="doctor">Dr name</string>
+    <string name="sepc">Specialty </string>
+    <string name="nameid">nameid</string>
+    <string name="email">Email</string>
+    <string name="birthday">Birthday</string>
+    <string name="des">description_id</string>
+    <string name="calenderapp">Calender of appointments</string>
+    <string name="about">About Doctor</string>
+    <string name="gender">Gender</string>
+    <string name="m_f">m/f</string>
+    <string name="_02">02+</string>
+    <string name="phone_number">Phone number</string>
+
+    <string name="nada_gmail_com">nada@gmail.com</string>
+
+    <string name="setimg">setimg</string>
+    <string name="edit">edit</string>
+    <string name="vid">viewid</string>
+
+    <string name="writedes">write description</string>
+    <string name="enter_a_new_phone">Enter a new phone</string>
+    <string name="enter_a_new_email">Enter a new email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_a_gender">Enter a gender</string>
+    <string name="enter_a_new_description">Enter a new description</string>
+
+    <string name="sumbitedit">Submit changes</string>
+
+    <string name="submitedit_id">Submit id</string>
+
 </resources>
