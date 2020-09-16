@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hospital">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,6 +13,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".signUP"></activity>
         <activity android:name=".login"></activity>
+        <activity android:name=".MakeAppointment"></activity>
+        <activity android:name=".DoctorDescription" />
+        <activity android:name=".DoctorsActivity" />
+        <activity android:name=".Home" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
