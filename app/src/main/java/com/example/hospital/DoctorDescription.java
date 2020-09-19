@@ -1,6 +1,7 @@
 package com.example.hospital;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +11,6 @@ import android.widget.TextView;
 
 public class DoctorDescription extends AppCompatActivity {
 
-    public String ID;
     public Doctor doctor;
     public TextView name;
     public TextView age;
@@ -37,9 +37,7 @@ public class DoctorDescription extends AppCompatActivity {
         makeAppointment = (Button)findViewById(R.id.makeAppointment);
 
 
-        ID = getIntent().getExtras().get("id").toString();
-
-        doctor =  Doctor.getDoctor(ID,"id",this);
+        doctor = (Doctor) getIntent().getSerializableExtra("Doctor");
 
         displayInfo(doctor);
 
@@ -47,7 +45,7 @@ public class DoctorDescription extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DoctorDescription.this,MakeAppointment.class);
-                intent.putExtra("id",ID);
+                intent.putExtra("Doctor",doctor);
                 startActivity(intent);
             }
         });
