@@ -1,8 +1,9 @@
 package com.example.hospital;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public abstract class Person {
+public abstract class Person implements Serializable {
     private String ID;
     private String Name;
     private String Phone;
