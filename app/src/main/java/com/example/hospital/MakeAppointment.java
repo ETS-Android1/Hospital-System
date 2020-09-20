@@ -10,12 +10,14 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -24,6 +26,7 @@ public class MakeAppointment extends AppCompatActivity {
     public TextInputLayout textInputLayout;
     public DatePickerDialog pickerDialog;
     public Doctor doctor;
+    public Patient patient;
     public String queryDate;
     public TextView appDetail;
     public TextView timeLabel;
@@ -34,8 +37,13 @@ public class MakeAppointment extends AppCompatActivity {
     public String numberInQueue;
     public Date date;
 
-    public String patientID;
-    public EditText pID;
+    private RadioButton Saturday;
+    private RadioButton Sunday;
+    private RadioButton Monday;
+    private RadioButton Tuesday;
+    private RadioButton Wednesday;
+    private RadioButton Thursday;
+    private RadioButton Friday;
 
 
     @Override
@@ -43,7 +51,8 @@ public class MakeAppointment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_appointment);
 
-         doctor = (Doctor) getIntent().getSerializableExtra("Doctor");
+        doctor = (Doctor) getIntent().getSerializableExtra("Doctor");
+        patient = (Patient) getIntent().getSerializableExtra("Patient");
 
         dateText = (TextInputEditText) findViewById(R.id.date);
         dateText.setInputType(InputType.TYPE_NULL);
@@ -54,10 +63,22 @@ public class MakeAppointment extends AppCompatActivity {
         time = (TextView) findViewById(R.id.time);
         number = (TextView) findViewById(R.id.number);
         confirmButton = (ImageButton) findViewById(R.id.confirmButton);
+        Saturday = (RadioButton) findViewById(R.id.Saturday);
+        Sunday = (RadioButton) findViewById(R.id.Sunday);
+        Monday = (RadioButton) findViewById(R.id.Monday);
+        Tuesday = (RadioButton) findViewById(R.id.Tuesday);
+        Wednesday = (RadioButton) findViewById(R.id.Wednesday);
+        Thursday = (RadioButton) findViewById(R.id.Thursday);
+        Friday = (RadioButton) findViewById(R.id.Friday);
+        Saturday.setClickable(false);
+        Sunday.setClickable(false);
+        Monday.setClickable(false);
+        Tuesday.setClickable(false);
+        Wednesday.setClickable(false);
+        Thursday.setClickable(false);
+        Friday.setClickable(false);
+        setAvailableDays();
         hideDetails();
-
-        // temp
-        pID = (EditText) findViewById(R.id.id_p);
 
         dateText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +159,7 @@ public class MakeAppointment extends AppCompatActivity {
             doctorTime += " AM";
 
         time.setText(doctorTime);
-        numberInQueue = String.valueOf(Appointment.numberInQueue(date, doctor, this) + 1);
+        numberInQueue = String.valueOf(Appointment.numberInQueue(date, doctor, this));
         number.setText(numberInQueue);
     }
 
@@ -152,14 +173,9 @@ public class MakeAppointment extends AppCompatActivity {
     }
 
     public void confirmAppointment(Date date) {
-        //temp
-        try {
-            patientID = pID.getText().toString();
-        } catch (Exception e) {
-        }
 
-        int prevApps = DataBase.resultSize("select * from Appiontment where patient_id = '" + patientID + "'" +
-                "and date = '" + queryDate + "'", this);
+        int prevApps = DataBase.resultSize("select * from Appiontment where patient_id = '" + patient.getID() + "'" +
+                "and date = '" + queryDate + "' and doctor_id = '" + doctor.getID() + "'", this);
 
         if (prevApps == 1) {
             Toast.makeText(this, "You have already booked an appointment in this Date", Toast.LENGTH_LONG).show();
@@ -167,16 +183,48 @@ public class MakeAppointment extends AppCompatActivity {
         }
 
 
-        Appointment appointment = new Appointment(doctor.getID(), patientID, date, Integer.parseInt(numberInQueue));
+        Appointment appointment = new Appointment(doctor.getID(), patient.getID(), date, Integer.parseInt(numberInQueue));
         System.out.println("insert into Appiontment values ( '" + appointment.getDoctorID() + "'" + " , '" + appointment.getPatientID()
                 + "' , '" + appointment.getDate() + "' )");
         DataBase.excutQuery("insert into Appiontment values ('" + appointment.getDoctorID() + "','" + appointment.getPatientID()
                 + "','" + appointment.getDate() + "','" + appointment.getNumberInQueue() + "')", this);
         Toast.makeText(this, "Booked Successfully", Toast.LENGTH_LONG).show();
 
-        Intent intent = new Intent(this, Home.class);
-        // get ID when user login
-        //intent.putExtra("ID",patientID);
+        Intent intent = new Intent(this, patientAppointments.class);
+        intent.putExtra("Patient",patient);
         startActivity(intent);
+    }
+
+    public void setAvailableDays()
+    {
+        Time[] days = doctor.getAvailableDays();
+        if(days[0] != null)
+        {
+            Sunday.setChecked(true);
+        }
+        if(days[1] != null)
+        {
+            Monday.setChecked(true);
+        }
+        if(days[2] != null)
+        {
+            Tuesday.setChecked(true);
+        }
+        if(days[3] != null)
+        {
+            Wednesday.setChecked(true);
+        }
+        if(days[4] != null)
+        {
+            Thursday.setChecked(true);
+        }
+        if(days[5] != null)
+        {
+            Friday.setChecked(true);
+        }
+        if(days[6] != null)
+        {
+            Saturday.setChecked(true);
+        }
     }
 }

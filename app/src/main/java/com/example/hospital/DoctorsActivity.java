@@ -19,6 +19,7 @@ public class DoctorsActivity extends AppCompatActivity {
     public DoctorArrayAdapter doctorAdapter;
     public ListView listView;
     public String speciality;
+    public Patient patient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,8 @@ public class DoctorsActivity extends AppCompatActivity {
         listView.setAdapter(doctorAdapter);
         speciality = getIntent().getExtras().get("speciality").toString();
         ((TextView)findViewById(R.id.textView2)).setText(speciality);
+
+        patient = (Patient) getIntent().getSerializableExtra("Patient");
 
         getDoctors();
     }
@@ -54,6 +57,7 @@ public class DoctorsActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this,DoctorDescription.class);
         intent.putExtra("Doctor", doctor);
+        intent.putExtra("Patient",patient);
         startActivity(intent);
     }
 }

@@ -21,11 +21,9 @@ public class patientAppointments extends AppCompatActivity {
 
     public ArrayList<Appointment> appointments = new ArrayList<>();
     public ListView patientAppointments;
-    AppointmentArrayAdapter adapter;
+    private AppointmentArrayAdapter adapter;
     public int selectedIndex;
-    //temp
-    public EditText pID;
-    public Button button;
+    private Patient patient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,21 +31,14 @@ public class patientAppointments extends AppCompatActivity {
         setContentView(R.layout.activity_patient_appointments);
 
         patientAppointments = (ListView)findViewById(R.id.patient_appointments);
-        //temp
-        pID = (EditText)findViewById(R.id.pID);
-        button = (Button)findViewById(R.id.btn);
+        patient = (Patient) getIntent().getSerializableExtra("Patient");
+
 
         registerForContextMenu(patientAppointments);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String patientID = pID.getText().toString();
-                appointments = Appointment.getPatientAppointments(patientID, patientAppointments.this);
-                adapter = new AppointmentArrayAdapter(patientAppointments.this,R.layout.appointment_list,appointments);
-                patientAppointments.setAdapter(adapter);
-            }
-        });
+        appointments = Appointment.getPatientAppointments("patient_id",patient.getID(), patientAppointments.this);
+        adapter = new AppointmentArrayAdapter(patientAppointments.this,R.layout.appointment_list,appointments);
+        patientAppointments.setAdapter(adapter);
 
     }
 

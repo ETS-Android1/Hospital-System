@@ -1,6 +1,7 @@
 package com.example.hospital;
 
 import android.content.Context;
+import android.content.Intent;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,11 +32,22 @@ public class Appointment {
     public static int numberInQueue(Date date, Doctor doctor, Context context) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-
-        int size = 0;
-        size = DataBase.resultSize("select * from Appiontment where doctor_id = '" + doctor.getID() + "'"
-                + " and date = '" + calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH) + "'", context);
-        return size;
+        ResultSet resultSet = DataBase.excutQuery("select * from Appiontment where doctor_id = '" + doctor.getID() + "'"
+                + " and date = '" + calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH) + "'",context);
+        int i = 1;
+        try{
+            while (resultSet.next())
+            {
+                if(Integer.parseInt(resultSet.getString("number_in_queue")) != i)
+                {
+                    return i;
+                }
+                i++;
+            }
+        }catch (SQLException e)
+        {
+        }
+        return i;
     }
 
     public String getID() {
@@ -65,11 +77,6 @@ public class Appointment {
     public String getDate() {
         final Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-//        System.out.println("--> "+date );
-/*        System.out.println("y: " + calendar.get(Calendar.YEAR));
-        System.out.println("m: " + (calendar.get(Calendar.MONTH) + 1));
-        System.out.println("d: " + calendar.get(Calendar.DAY_OF_MONTH));
-*/
         return calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
     }
 
@@ -85,9 +92,9 @@ public class Appointment {
         this.numberInQueue = numberInQueue;
     }
 
-    public static ArrayList<Appointment> getPatientAppointments(String patientID, Context context) {
-        ResultSet resultSet = DataBase.excutQuery("select * from Appiontment where patient_id = '" +
-                patientID + "'", context);
+    public static ArrayList<Appointment> getPatientAppointments(String attribute , String value, Context context) {
+        ResultSet resultSet = DataBase.excutQuery("select * from Appiontment where "+attribute+" = '" +
+                value + "'", context);
         ArrayList<Appointment> appointments = new ArrayList<>();
         try {
             while (resultSet.next()) {
