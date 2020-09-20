@@ -9,14 +9,17 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.lang.reflect.Array;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class AdminAddFrag extends Fragment {
@@ -34,6 +37,9 @@ public class AdminAddFrag extends Fragment {
     private TextInputLayout text_specialty;
     private TextInputLayout text_description;
     private TextInputLayout text_birth_date;
+    private Spinner spinner_day;
+    private Spinner spinner_month;
+    private Spinner spinner_year;
     private RadioGroup rdGroup;
 
 
@@ -81,8 +87,11 @@ public class AdminAddFrag extends Fragment {
         text_passord=rootView.findViewById(R.id.text_pass);
         text_phone=rootView.findViewById(R.id.text_phone);
         text_specialty=rootView.findViewById(R.id.text_specialty);
-        text_birth_date=rootView.findViewById(R.id.text_birth_data);
         text_description=rootView.findViewById(R.id.text_description);
+        spinner_day = rootView.findViewById(R.id.spinner_day);
+        spinner_month = rootView.findViewById(R.id.spinner_month);
+        spinner_year = rootView.findViewById(R.id.spinner_year);
+        initializeSpinners();
         Button confirm= rootView.findViewById(R.id.button);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -229,6 +238,32 @@ public class AdminAddFrag extends Fragment {
         /**   + "','" + doctor.getTime(0) + "','" + doctor.getTime(1) + "','" + doctor.getTime(2) + "','" + doctor.getTime(3) + "','" + doctor.getTime(4) + "','" + doctor.getTime(5) + "','" + "NULL"  */
     }
 
+    public void initializeSpinners() {
+        ArrayList<String> arrayList = new ArrayList<>();
+        for (int i = 1; i <= 31; i++)
+            arrayList.add(String.valueOf(i));
+        arrayList.add(0, "Day");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_day.setAdapter(adapter);
+
+        arrayList = new ArrayList<>();
+        for (int i = 1; i <= 12; i++)
+            arrayList.add(String.valueOf(i));
+        arrayList.add(0, "Month");
+        adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_month.setAdapter(adapter);
+
+        arrayList = new ArrayList<>();
+        int year = new java.util.Date().getYear() + 1900;
+        for (int i = year - 18; i >= year - 100; i--)
+            arrayList.add(String.valueOf(i));
+        arrayList.add(0, "Year");
+        adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_year.setAdapter(adapter);
+    }
 
 
 }
