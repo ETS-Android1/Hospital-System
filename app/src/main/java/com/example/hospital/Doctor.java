@@ -100,7 +100,16 @@ public class Doctor extends Person {
         return null;
     }
 
-    public Time getTime(int day) {
+    public int getMaxAppointmentsPerDay() {
+        return maxAppointmentsPerDay;
+    }
+
+    public void setMaxAppointmentsPerDay(int maxAppointmentsPerDay) {
+        this.maxAppointmentsPerDay = maxAppointmentsPerDay;
+    }
+
+    public Time getTime (int day)
+    {
         return availableDays[day];
     }
 
