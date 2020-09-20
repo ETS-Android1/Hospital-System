@@ -41,6 +41,16 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string-array name="specialtyArray">
+        <item>Dentist</item>
+        <item>Family</item>
+        <item>Internal</item>
+        <item>Neurology</item>
+        <item>Ophthalmology</item>
+        <item>Pediatrics</item>
+        <item>Surgery</item>
+        <item>Urology</item>
+    </string-array>
 
 
 
