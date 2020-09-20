@@ -1,8 +1,11 @@
 package com.example.hospital;
 
+import java.io.Serializable;
+import java.time.Year;
+import java.util.Calendar;
 import java.util.Date;
 
-public abstract class Person {
+public abstract class Person implements Serializable {
     private String ID;
     private String Name;
     private String Phone;
@@ -10,6 +13,15 @@ public abstract class Person {
     private String Gender;
     private String dateOfBirth;
     private int Age;
+
+    public Person(String name, String phone, String email, String gender, String dateOfBirth) {
+        Name = name;
+        Phone = phone;
+        Email = email;
+        Gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        calculateAge(dateOfBirth);
+    }
 
     public Person(String ID, String name, String phone, String email, String gender, String dateOfBirth) {
         this.ID = ID;
@@ -24,8 +36,15 @@ public abstract class Person {
     public void calculateAge(String date)
     {
         Date today = new Date();
+        Calendar todayCalendar = Calendar.getInstance();
+        todayCalendar.setTime(today);
+
         String[]dateBirth = date.split("-");
-        this.Age = today.getYear() - (Integer.parseInt(dateBirth[0])-1900);
+        Date birthDate = new Date(Integer.parseInt(dateBirth[0])-1900 , Integer.parseInt(dateBirth[1])-1 ,Integer.parseInt(dateBirth[2]));
+        Calendar birthCalendar = Calendar.getInstance();
+        birthCalendar.setTime(birthDate);
+
+        this.Age  = todayCalendar.get(Calendar.YEAR) - birthCalendar.get(Calendar.YEAR);
     }
 
     public String getID() {

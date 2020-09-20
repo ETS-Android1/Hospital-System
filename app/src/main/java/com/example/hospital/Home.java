@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,24 +26,29 @@ public class Home extends AppCompatActivity {
     public final int COL = 2;
     public int width = 150,height = 150;
     public ArrayList<ImageButton> buttonArrayList = new ArrayList<>();
+    public int images[] = {R.drawable.get_well,R.drawable.use_app,R.drawable.care,R.drawable.lab};
+    public ViewFlipper imageSlider;
+    public Patient patient;
 
-    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        textView = (TextView) findViewById(R.id.connectView);
-
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        testDynamic();
+        patient = (Patient) getIntent().getSerializableExtra("Patient");
+
+        imageSlider = (ViewFlipper)findViewById(R.id.imageSlider);
+
+        viewSpecialities();
+        slider(images);
     }
 
-    public void testDynamic()
+    public void viewSpecialities()
     {
         if(DataBase.connection != null)
         {
@@ -120,13 +127,11 @@ public class Home extends AppCompatActivity {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-                textView.setText(e.getMessage());
             }
 
         }
         else
         {
-            textView.setText("No Connection");
         }
     }
 
@@ -134,6 +139,21 @@ public class Home extends AppCompatActivity {
     {
         Intent intent = new Intent(this,DoctorsActivity.class);
         intent.putExtra("speciality",speciality);
+        intent.putExtra("Patient",patient);
         startActivity(intent);
+    }
+
+    public void slider(int[] images)
+    {
+        for(int image : images)
+        {
+            ImageView imageView = new ImageView(this);
+            imageView.setBackgroundResource(image);
+            imageSlider.addView(imageView);
+            imageSlider.setFlipInterval(5000);
+            imageSlider.setAutoStart(true);
+            imageSlider.setInAnimation(this,android.R.anim.slide_in_left);
+            imageSlider.setOutAnimation(this,android.R.anim.slide_out_right);
+        }
     }
 }
