@@ -14,7 +14,8 @@
       android:layout_width="183dp"
       android:layout_height="50dp"
       android:layout_margin="20dp"
-      android:layout_marginStart="28dp"
+      android:layout_marginStart="52dp"
+      android:layout_marginLeft="52dp"
       android:layout_marginTop="2dp"
       android:layout_marginBottom="160dp"
       android:background="@drawable/btn_round"
@@ -30,9 +31,10 @@
       android:layout_width="wrap_content"
       android:layout_height="26dp"
       android:layout_marginStart="16dp"
+      android:layout_marginLeft="16dp"
       android:layout_marginTop="50dp"
       android:layout_marginBottom="1dp"
-      android:text="To create new account :"
+      android:text="Not have an account ?"
       android:textColor="	#000000"
       android:textSize="19dp"
       android:textStyle="bold"
@@ -42,7 +44,7 @@
       app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
 
   <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/textusername"
+      android:id="@+id/email"
       android:layout_width="409dp"
       android:layout_height="wrap_content"
       android:layout_marginStart="1dp"
@@ -58,10 +60,10 @@
       app:layout_constraintTop_toTopOf="parent">
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/username"
+        android:id="@+id/emailText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username" />
+        android:hint="Email" />
   </com.google.android.material.textfield.TextInputLayout>
 
   <com.google.android.material.textfield.TextInputLayout
@@ -76,10 +78,10 @@
       android:textColorHint="#000000"
       app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
       app:errorEnabled="true"
-      app:passwordToggleEnabled="true"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textusername">
+      app:layout_constraintTop_toBottomOf="@+id/email"
+      app:passwordToggleEnabled="true">
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/pass_id"
@@ -90,18 +92,20 @@
 
   <TextView
       android:id="@+id/tsignup"
-      android:layout_width="72dp"
-      android:layout_height="46dp"
-      android:layout_marginTop="210dp"
+      android:layout_width="75dp"
+      android:layout_height="24dp"
+      android:layout_marginStart="4dp"
+      android:layout_marginLeft="4dp"
+      android:layout_marginTop="80dp"
       android:layout_marginBottom="1dp"
-      android:text="SignUp"
+      android:text="Sign Up"
       android:textColor="	#730000"
-      android:textSize="22dp"
+      android:textSize="19dp"
       android:textStyle="bold"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toEndOf="@+id/tq"
-      app:layout_constraintTop_toBottomOf="@+id/textpass"
-      app:layout_constraintVertical_bias="0.7" />
+      app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+      app:layout_constraintVertical_bias="0.404" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,7 @@ import com.google.android.material.textfield.TextInputLayout;
 public class login extends AppCompatActivity {
 
      private TextView text_signup;
-     private TextInputLayout tusername;
+     private TextInputLayout temail;
      private TextInputLayout tpassword;
 
     @Override
@@ -21,8 +21,8 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        tusername=findViewById(R.id.textusername);
-        tpassword=findViewById(R.id.textpass);
+        temail =(TextInputLayout)findViewById(R.id.email);
+        tpassword=(TextInputLayout)findViewById(R.id.textpass);
         text_signup=(TextView)findViewById(R.id.tsignup);
 
 
@@ -37,15 +37,12 @@ public class login extends AppCompatActivity {
     }
 
     private boolean validateUsername() {
-        String usernameInput = tusername.getEditText().getText().toString().trim();
+        String usernameInput = temail.getEditText().getText().toString().trim();
         if (usernameInput.isEmpty()) {
-            tusername.setError("Field can't be empty");
-            return false;
-        } else if (usernameInput.length() > 15) {
-            tusername.setError("Username too long");
+            temail.setError("Field can't be empty");
             return false;
         } else {
-            tusername.setError(null);
+            temail.setError(null);
             return true;
         }
     }
@@ -66,8 +63,33 @@ public class login extends AppCompatActivity {
         if ( !validateUsername() | !validatepass() ) {
             return;
         }
+        String email = temail.getEditText().getText().toString().trim();
+        String password = tpassword.getEditText().getText().toString();
+        int prev_patient = DataBase.resultSize("select * from Patient where e_mail = '" +email+"' " +
+                "and password = '" + password + "'",this);
+        int prev_doctor = DataBase.resultSize("select * from Doctor where e_mail = '" +email+"' " +
+                "and password = '" + password + "'",this);
+        if(prev_patient == 0 && prev_doctor == 0)
+        {
+            Toast.makeText(this,"Wrong e-mail or password",Toast.LENGTH_LONG).show();
+            return;
+        }
 
+        Person user;
+        if(prev_doctor == 1)
+        {
+            user = Doctor.getDoctor(email ,"e_mail",this);
+            //Intent intent = new Intent(this,);
+            //startActivity(intent);
+        }
+
+        if(prev_patient == 1)
+        {
+            user = (Person) Patient.getPatient("e_mail",email,this);
+            Toast.makeText(this,"Welcome " + user.getName() ,Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this,Home.class);
+            intent.putExtra("Patient",user);
+            startActivity(intent);
+        }
     }
-
-
 }

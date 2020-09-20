@@ -28,6 +28,7 @@ public class Home extends AppCompatActivity {
     public ArrayList<ImageButton> buttonArrayList = new ArrayList<>();
     public int images[] = {R.drawable.get_well,R.drawable.use_app,R.drawable.care,R.drawable.lab};
     public ViewFlipper imageSlider;
+    public Patient patient;
 
 
     @Override
@@ -38,6 +39,8 @@ public class Home extends AppCompatActivity {
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        patient = (Patient) getIntent().getSerializableExtra("Patient");
 
         imageSlider = (ViewFlipper)findViewById(R.id.imageSlider);
 
@@ -136,6 +139,7 @@ public class Home extends AppCompatActivity {
     {
         Intent intent = new Intent(this,DoctorsActivity.class);
         intent.putExtra("speciality",speciality);
+        intent.putExtra("Patient",patient);
         startActivity(intent);
     }
 
