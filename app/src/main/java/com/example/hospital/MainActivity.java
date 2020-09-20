@@ -22,10 +22,15 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-/*
         DataBase dataBase = new DataBase(this);
+/*
+        Intent intent = new Intent(this,admin.class);
+        startActivity(intent);
+*/
+      /*
         Intent intent = new Intent(this,Home.class);
         startActivity(intent);
+
         */
     }
 }

@@ -122,6 +122,14 @@ public class Doctor extends Person {
         return null;
     }
 
+    public int getMaxAppointmentsPerDay() {
+        return maxAppointmentsPerDay;
+    }
+
+    public void setMaxAppointmentsPerDay(int maxAppointmentsPerDay) {
+        this.maxAppointmentsPerDay = maxAppointmentsPerDay;
+    }
+
     public Time getTime (int day)
     {
         return availableDays[day];
