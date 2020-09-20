@@ -11,10 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Profile">
-        <activity android:name=".signUP"></activity>
-        <activity android:name=".login"></activity>
-        <activity android:name=".MakeAppointment"></activity>
+        <activity android:name=".addTest"></activity>
+        <activity android:name=".tests" />
+        <activity android:name=".Profile" />
+        <activity android:name=".signUP" />
+        <activity android:name=".login" />
+        <activity android:name=".MakeAppointment" />
         <activity android:name=".DoctorDescription" />
         <activity android:name=".DoctorsActivity" />
         <activity android:name=".Home" />
@@ -25,7 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

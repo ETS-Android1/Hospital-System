@@ -27,5 +27,10 @@ public class MainActivity extends AppCompatActivity {
         DataBase dataBase = new DataBase(this);
         Intent intent = new Intent(this,Home.class);
         startActivity(intent);*/
+
+        /*
+        Intent intent = new Intent(tests.this,addTest.class);
+        startActivity(intent);
+        */
     }
 }
