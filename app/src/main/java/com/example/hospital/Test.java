@@ -1,5 +1,7 @@
 package com.example.hospital;
 
+import android.widget.ArrayAdapter;
+
 import java.util.Date;
 
 public class Test {
@@ -14,6 +16,19 @@ public class Test {
         this.date = date;
         this.text = text;
     }
+    public void loadData(ArrayAdapter<String> testsData)
+    {
+        //hnLoad el data mn el database
+        String test = ;
+        String dateOfTest =;
+        String [] tests = test.Split('@');
+        for (int i = 0; i <tests.length;i++)
+        {
+            testsData.add(tests[i]);
+        }
+
+    }
+
 
     public String getID() {
         return ID;
