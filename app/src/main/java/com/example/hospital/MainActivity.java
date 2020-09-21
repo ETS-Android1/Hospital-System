@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         DataBase dataBase = new DataBase(this);
 
-        Intent intent = new Intent(this,admin.class);
+        Intent intent = new Intent(this,addTest.class);
         startActivity(intent);
 
       /*

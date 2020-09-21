@@ -1,7 +1,14 @@
 package com.example.hospital;
 
+import android.content.Context;
+import android.provider.ContactsContract;
+import android.util.Pair;
 import android.widget.ArrayAdapter;
 
+import java.lang.reflect.Array;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Test {
@@ -15,18 +22,6 @@ public class Test {
         this.patientID = patientID;
         this.date = date;
         this.text = text;
-    }
-    public void loadData(ArrayAdapter<String> testsData)
-    {
-        //hnLoad el data mn el database
-        String test = ;
-        String dateOfTest =;
-        String [] tests = test.Split('@');
-        for (int i = 0; i <tests.length;i++)
-        {
-            testsData.add(tests[i]);
-        }
-
     }
 
 
