@@ -31,9 +31,9 @@ public class AdminRemoveFrag extends Fragment {
     private String mParam2;
 
     ArrayList<Pair<Integer, String>> list;
-    ListView listView;
-    Spinner spinner;
-    String Selected;
+    static ListView listView;
+    static Spinner spinner;
+    static String Selected = "Doctor";
 
     public AdminRemoveFrag() {
 
@@ -53,7 +53,7 @@ public class AdminRemoveFrag extends Fragment {
     }
 
 
-    private void removeDoctor(int id, Context context) {
+    private static void removeDoctor(int id, Context context) {
 
         String query = "DELETE FROM Appiontment WHERE doctor_id= " + id + ";";
         DataBase.excutQuery(query, context);
@@ -63,7 +63,7 @@ public class AdminRemoveFrag extends Fragment {
 
     }
 
-    private void removePatient(int id, Context context) {
+    private static void removePatient(int id, Context context) {
         String query = "DELETE FROM Appiontment WHERE patient_id= " + id + ";";
         DataBase.excutQuery(query, context);
 
@@ -76,7 +76,7 @@ public class AdminRemoveFrag extends Fragment {
     }
 
     public void updateListView() {
-
+        list=loadAll(Selected,getContext());
         ArrayList<String> nameList = new ArrayList<>();
         for (Pair<Integer, String> item : list)
             nameList.add(item.first + "- " + item.second);
@@ -120,22 +120,18 @@ public class AdminRemoveFrag extends Fragment {
         spinner = rootView.findViewById(R.id.spinner);
         listView = rootView.findViewById(R.id.theList);
 
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                              @Override
-                                              public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                                   Selected=adapterView.getSelectedItem().toString();
-                                                   list=loadAll(Selected,getContext());
-                                                   updateListView();
-                                              }
-
-                                              @Override
-                                              public void onNothingSelected(AdapterView<?> adapterView) {
-
-                                              }
-                                          }
-        );
-
-
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Selected=adapterView.getSelectedItem().toString();
+                list=loadAll(Selected,getContext());
+                updateListView();
+            }
+             @Override
+             public void onNothingSelected(AdapterView<?> adapterView) {
+             }
+        });
         return rootView;
     }
 }

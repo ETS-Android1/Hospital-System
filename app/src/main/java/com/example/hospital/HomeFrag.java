@@ -1,18 +1,23 @@
 package com.example.hospital;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+
 import android.os.StrictMode;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import java.sql.ResultSet;
@@ -21,7 +26,18 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Home extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link ProfileFrag#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class HomeFrag extends Fragment {
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+    private String mParam1;
+    private String mParam2;
+
+
     public Set<String> speciality = new HashSet<>();
     public final int COL = 2;
     public int width = 150,height = 150;
@@ -29,23 +45,51 @@ public class Home extends AppCompatActivity {
     public int images[] = {R.drawable.get_well,R.drawable.use_app,R.drawable.care,R.drawable.lab};
     public ViewFlipper imageSlider;
     public Patient patient;
+    public View view;
 
+
+    public HomeFrag() {
+
+    }
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment ProfileFrag.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static HomeFrag newInstance(String param1, String param2) {
+        HomeFrag fragment = new HomeFrag();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
 
-        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
+    @Override
+    public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_home,container,false);
+        ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-        patient = (Patient) getIntent().getSerializableExtra("Patient");
-
-        imageSlider = (ViewFlipper)findViewById(R.id.imageSlider);
-
+        imageSlider = view.findViewById(R.id.imageSlider_frag);
+        patient = (Patient) getActivity().getIntent().getSerializableExtra("Patient");
         viewSpecialities();
         slider(images);
+
+        return view;
     }
 
     public void viewSpecialities()
@@ -54,15 +98,15 @@ public class Home extends AppCompatActivity {
         {
             try {
                 int col = -1;
-                ResultSet resultSet = DataBase.excutQuery("select specialty from Doctor",this);
-                TableLayout tableLayout = (TableLayout)findViewById(R.id.buttons);
-                TableRow tableRow = new TableRow(this);
+                ResultSet resultSet = DataBase.excutQuery("select specialty from Doctor",getActivity());
+                TableLayout tableLayout = view.findViewById(R.id.buttons_frag);
+                TableRow tableRow = new TableRow(getActivity());
 
                 while (resultSet.next()){
                     col =  ++col % COL;
                     if(col == 0)
                     {
-                        tableRow = new TableRow(this);
+                        tableRow = new TableRow(getActivity());
                         tableRow.setLayoutParams(new TableLayout.LayoutParams(
                                 TableLayout.LayoutParams.WRAP_CONTENT,
                                 TableLayout.LayoutParams.WRAP_CONTENT,
@@ -78,7 +122,7 @@ public class Home extends AppCompatActivity {
                     }
                     speciality.add(specialities);
 
-                    ImageButton imageButton = new ImageButton(this);
+                    ImageButton imageButton = new ImageButton(getActivity());
 
                     if(specialities.equals("DENTIST"))
                         imageButton.setImageResource(R.drawable.dentist);
@@ -115,7 +159,7 @@ public class Home extends AppCompatActivity {
 
                 while(col < COL)
                 {
-                    ImageButton imageButton = new ImageButton(this);
+                    ImageButton imageButton = new ImageButton(getActivity());
                     imageButton.setLayoutParams(new TableRow.LayoutParams(
                             TableRow.LayoutParams.WRAP_CONTENT,
                             TableRow.LayoutParams.MATCH_PARENT,
@@ -137,7 +181,7 @@ public class Home extends AppCompatActivity {
 
     public void clickButton(String speciality)
     {
-        Intent intent = new Intent(this,DoctorsActivity.class);
+        Intent intent = new Intent(getActivity(),DoctorsActivity.class);
         intent.putExtra("speciality",speciality);
         intent.putExtra("Patient",patient);
         startActivity(intent);
@@ -147,13 +191,13 @@ public class Home extends AppCompatActivity {
     {
         for(int image : images)
         {
-            ImageView imageView = new ImageView(this);
+            ImageView imageView = new ImageView(getActivity());
             imageView.setBackgroundResource(image);
             imageSlider.addView(imageView);
             imageSlider.setFlipInterval(5000);
             imageSlider.setAutoStart(true);
-            imageSlider.setInAnimation(this,android.R.anim.slide_in_left);
-            imageSlider.setOutAnimation(this,android.R.anim.slide_out_right);
+            imageSlider.setInAnimation(getActivity(),android.R.anim.slide_in_left);
+            imageSlider.setOutAnimation(getActivity(),android.R.anim.slide_out_right);
         }
     }
 }

@@ -34,7 +34,7 @@ public class AdminAddFrag extends Fragment {
     private TextInputLayout text_username;
     private TextInputLayout text_passord;
     private TextInputLayout text_phone;
-    private TextInputLayout text_specialty;
+    private Spinner text_specialty;
     private TextInputLayout text_description;
     private TextInputLayout text_birth_date;
     private Spinner spinner_day;
@@ -86,13 +86,13 @@ public class AdminAddFrag extends Fragment {
         text_username=rootView.findViewById(R.id.text_user_name);
         text_passord=rootView.findViewById(R.id.text_pass);
         text_phone=rootView.findViewById(R.id.text_phone);
-        text_specialty=rootView.findViewById(R.id.text_specialty);
+        text_specialty=rootView.findViewById(R.id.spin_specialty);
         text_description=rootView.findViewById(R.id.text_description);
         spinner_day = rootView.findViewById(R.id.spinner_day);
         spinner_month = rootView.findViewById(R.id.spinner_month);
         spinner_year = rootView.findViewById(R.id.spinner_year);
         initializeSpinners();
-        Button confirm= rootView.findViewById(R.id.button);
+        Button confirm= rootView.findViewById(R.id.button_add);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,14 +135,8 @@ public class AdminAddFrag extends Fragment {
     }
 
     private boolean validateSpecialty() {
-        String usernameInput = text_specialty.getEditText().getText().toString().trim();
-        if (usernameInput.isEmpty()) {
-            text_specialty.setError("Field can't be empty");
-            return false;
-        }  else {
-            text_specialty.setError(null);
-            return true;
-        }
+        String usernameInput = text_specialty.getSelectedItem().toString();
+        return true;
     }
 
 
@@ -207,7 +201,7 @@ public class AdminAddFrag extends Fragment {
         String email=text_email.getEditText().getText().toString();
         String pass=text_passord.getEditText().getText().toString();
         String phone=text_phone.getEditText().getText().toString();
-        String specialty=text_specialty.getEditText().getText().toString();
+        String specialty=text_specialty.getSelectedItem().toString();
         String description=text_description.getEditText().getText().toString();
         Date birthDate=new Date(Integer.parseInt(text_birth_date.getEditText().getText().toString()));
         String gender="male";
@@ -222,8 +216,8 @@ public class AdminAddFrag extends Fragment {
         String phone="0213865";
         String specialty="den";
         String description="gamazan";
-        String birthDate="11111";
-        String gender="male";
+        String birthDate="2000-1-1";
+        String gender="Male";
         Doctor doctor=new Doctor("-1",name,phone,email,gender,birthDate,specialty,description,0);
         addDoctor(doctor,pass,getContext());
         Toast.makeText(getContext(),"Done",Toast.LENGTH_SHORT).show();
@@ -232,7 +226,7 @@ public class AdminAddFrag extends Fragment {
 
     private void addDoctor(Doctor doctor, String password, Context context) {
         String query = "INSERT INTO Doctor(name,e_mail,phone,password,birth_date,gender,specialty,description,max_app_per_day)"
-                + "VALUES ('" + doctor.getName() + "','" + doctor.getEmail() + "','" + doctor.getPhone() + "','" + password + "','" + new Date(Integer.parseInt(doctor.getDateOfBirth())) + "','" + doctor.getGender() + "','" + doctor.getSpeciality() + "','" + doctor.getDescription() + "','" + doctor.getMaxAppointmentsPerDay() + "');";
+                + "VALUES ('" + doctor.getName() + "','" + doctor.getEmail() + "','" + doctor.getPhone() + "','" + password + "','" + doctor.getDateOfBirth() + "','" + doctor.getGender() + "','" + doctor.getSpeciality() + "','" + doctor.getDescription() + "','" + doctor.getMaxAppointmentsPerDay() + "');";
         DataBase.excutQuery(query, context);
         /**   ,sunday,monday,tuesday,wednesday,thursday,friday,saturday */
         /**   + "','" + doctor.getTime(0) + "','" + doctor.getTime(1) + "','" + doctor.getTime(2) + "','" + doctor.getTime(3) + "','" + doctor.getTime(4) + "','" + doctor.getTime(5) + "','" + "NULL"  */
