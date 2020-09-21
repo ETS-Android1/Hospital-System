@@ -15,7 +15,6 @@
         <activity android:name=".tests" />
         <activity android:name=".Profile" />
         <activity android:name=".admin"/>
-        <activity android:name=".Profile" />
         <activity android:name=".patientAppointments" />
         <activity android:name=".signUP" />
         <activity android:name=".login" />

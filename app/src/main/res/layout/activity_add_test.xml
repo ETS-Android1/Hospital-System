@@ -28,6 +28,7 @@
         android:layout_marginEnd="147dp"
         android:layout_marginRight="147dp"
         android:layout_marginBottom="100dp"
+        android:onClick="addText"
         android:text="add test"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
