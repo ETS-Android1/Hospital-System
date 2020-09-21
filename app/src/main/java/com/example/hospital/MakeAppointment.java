@@ -190,7 +190,7 @@ public class MakeAppointment extends AppCompatActivity {
                 + "','" + appointment.getDate() + "','" + appointment.getNumberInQueue() + "')", this);
         Toast.makeText(this, "Booked Successfully", Toast.LENGTH_LONG).show();
 
-        Intent intent = new Intent(this, patientAppointments.class);
+        Intent intent = new Intent(this, NavigateActivity.class);
         intent.putExtra("Patient",patient);
         startActivity(intent);
     }

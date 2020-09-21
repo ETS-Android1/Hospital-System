@@ -204,7 +204,7 @@ public class signUP extends AppCompatActivity {
                 "','" + gender + "')", this);
         Patient patient = Patient.getPatient("e_mail", email, this);
         Toast.makeText(this,"Successful Registration",Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this,Home.class);
+        Intent intent = new Intent(this,NavigateActivity.class);
         intent.putExtra("Patient",patient);
         startActivity(intent);
     }

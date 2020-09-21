@@ -7,18 +7,18 @@
     tools:context=".Home">
 
 
-        <ViewFlipper
-            android:id="@+id/imageSlider"
-            android:layout_width="match_parent"
-            android:layout_height="188dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <ViewFlipper
+        android:id="@+id/imageSlider_frag"
+        android:layout_width="match_parent"
+        android:layout_height="188dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textSpeciaty"
+        android:id="@+id/textSpeciaty_frag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -39,7 +39,7 @@
         android:layout_centerHorizontal="true">
 
         <TableLayout
-            android:id="@+id/buttons"
+            android:id="@+id/buttons_frag"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="16dp"

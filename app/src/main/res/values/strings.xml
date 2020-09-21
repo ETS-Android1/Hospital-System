@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hospital</string>
+    <string name="app_name">The Hospital</string>
     <string-array name="adminRemove">
         <item>Doctor</item>
         <item>Patient</item>
@@ -51,7 +51,6 @@
         <item>Surgery</item>
         <item>Urology</item>
     </string-array>
-
 
 
 </resources>
