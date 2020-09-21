@@ -23,12 +23,20 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         DataBase dataBase = new DataBase(this);
+
 /*
         Intent intent = new Intent(this,admin.class);
+
+        Intent intent = new Intent(this,addTest.class);
         startActivity(intent);
 */
       /*
         Intent intent = new Intent(this,Home.class);
+        startActivity(intent);*/
+
+        /*
+        Intent intent = new Intent(tests.this,addTest.class);
+        startActivity(intent);
         startActivity(intent);
 
         */
