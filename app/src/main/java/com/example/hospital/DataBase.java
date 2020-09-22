@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DataBase {
+
     private static String ip = "192.168.1.54";
     private static String port = "1433";
     private static String Classes = "net.sourceforge.jtds.jdbc.Driver";
