@@ -46,6 +46,7 @@ public class patientAppointments extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         getMenuInflater().inflate(R.menu.delete_menu,menu);
+
     }
 
     @Override

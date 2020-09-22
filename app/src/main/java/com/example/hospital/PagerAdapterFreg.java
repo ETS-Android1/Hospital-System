@@ -21,9 +21,6 @@ private int numoftaps;
            return  new AdminRemoveFrag();
        else if(position==1)
         return  new AdminAddFrag();
-       else if(position==2)
-           return  new AdminEditFrag();
-
         return null;
     }
 

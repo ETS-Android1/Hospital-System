@@ -35,7 +35,6 @@ public class admin extends AppCompatActivity {
         TabLayout tabLayout=findViewById(R.id.tabLayout);
         TabItem removeTab=findViewById(R.id.remove_tab);
         TabItem addTab=findViewById(R.id.add_tab);
-        TabItem editTab=findViewById(R.id.edit_tab);
         final ViewPager viewPager= findViewById(R.id.viewPager);
         PagerAdapterFreg pagerAdapter= new PagerAdapterFreg(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
