@@ -15,20 +15,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
+
         Intent intent=new Intent(this,login.class);
         startActivity(intent);
-*/
+
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         DataBase dataBase = new DataBase(this);
 
+/*
         Intent intent = new Intent(this,admin.class);
-        startActivity(intent);
 
+        Intent intent = new Intent(this,addTest.class);
+        startActivity(intent);
+*/
       /*
         Intent intent = new Intent(this,Home.class);
+        startActivity(intent);*/
+
+        /*
+        Intent intent = new Intent(tests.this,addTest.class);
+        startActivity(intent);
         startActivity(intent);
 
         */

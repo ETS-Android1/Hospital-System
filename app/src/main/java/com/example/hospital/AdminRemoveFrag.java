@@ -35,6 +35,7 @@ public class AdminRemoveFrag extends Fragment {
     Spinner spinner;
     String Selected="Doctor";
 
+
     public AdminRemoveFrag() {
 
     }
@@ -54,7 +55,7 @@ public class AdminRemoveFrag extends Fragment {
     }
 
 
-    private void removeDoctor(int id, Context context) {
+    private static void removeDoctor(int id, Context context) {
 
         String query = "DELETE FROM Appiontment WHERE doctor_id= " + id + ";";
         DataBase.excutQuery(query, context);
@@ -64,7 +65,7 @@ public class AdminRemoveFrag extends Fragment {
 
     }
 
-    private void removePatient(int id, Context context) {
+    private static void removePatient(int id, Context context) {
         String query = "DELETE FROM Appiontment WHERE patient_id= " + id + ";";
         DataBase.excutQuery(query, context);
 
@@ -141,5 +142,6 @@ public class AdminRemoveFrag extends Fragment {
     public void onResume() {
         super.onResume();
         updateListView();
+
     }
 }

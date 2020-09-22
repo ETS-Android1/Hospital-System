@@ -3,41 +3,26 @@ package com.example.hospital;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Context;
-import android.opengl.EGLExt;
 import android.os.Bundle;
-import android.util.Pair;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TableLayout;
-import android.widget.TextView;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
-import javax.xml.transform.Result;
-
-public class admin extends AppCompatActivity {
-
-
+public class NavigateActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+        setContentView(R.layout.activity_navigate);
 
-        TabLayout tabLayout=findViewById(R.id.tabLayout);
-        TabItem removeTab=findViewById(R.id.remove_tab);
-        TabItem addTab=findViewById(R.id.add_tab);
-        final ViewPager viewPager= findViewById(R.id.viewPager);
-        PagerAdapterFreg pagerAdapter= new PagerAdapterFreg(getSupportFragmentManager(),tabLayout.getTabCount());
+        TabLayout tabLayout=findViewById(R.id.tab_Layout);
+        TabItem removeTab = findViewById(R.id.profile_tab);
+        TabItem addTab = findViewById(R.id.home_tab);
+        TabItem editTab = findViewById(R.id.test_tab);
+        final ViewPager viewPager = findViewById(R.id.view_Pager);
+        NavigateAdapterFrag pagerAdapter= new NavigateAdapterFrag(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -54,13 +39,5 @@ public class admin extends AppCompatActivity {
 
             }
         });
-
-
     }
-
-
-
-
-
-
 }

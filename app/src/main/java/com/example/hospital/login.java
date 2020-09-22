@@ -87,7 +87,7 @@ public class login extends AppCompatActivity {
         {
             user = (Person) Patient.getPatient("e_mail",email,this);
             Toast.makeText(this,"Welcome " + user.getName() ,Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this,Home.class);
+            Intent intent = new Intent(this,NavigateActivity.class);
             intent.putExtra("Patient",user);
             startActivity(intent);
         }
