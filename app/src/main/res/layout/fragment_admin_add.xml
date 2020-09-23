@@ -280,8 +280,8 @@
                     android:layout_marginLeft="24dp"
                     android:layout_marginTop="3dp"
                     android:ems="10"
+                    android:hint="Hour"
                     android:inputType="number"
-                    android:text="Hour"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/check_sunday" />
 
@@ -304,8 +304,8 @@
                     android:layout_marginLeft="60dp"
                     android:layout_marginTop="4dp"
                     android:ems="10"
+                    android:hint="Hour"
                     android:inputType="number"
-                    android:text="Hour"
                     app:layout_constraintStart_toEndOf="@id/text_hour_sunday"
                     app:layout_constraintTop_toBottomOf="@+id/check_monday" />
 
@@ -328,8 +328,8 @@
                     android:layout_marginLeft="64dp"
                     android:layout_marginTop="4dp"
                     android:ems="10"
+                    android:hint="Hour"
                     android:inputType="number"
-                    android:text="Hour"
                     app:layout_constraintStart_toEndOf="@id/text_hour_monday"
                     app:layout_constraintTop_toBottomOf="@+id/check_tuesday" />
                 <CheckBox
@@ -351,8 +351,8 @@
                     android:layout_marginLeft="24dp"
                     android:layout_marginTop="3dp"
                     android:ems="10"
+                    android:hint="Hour"
                     android:inputType="number"
-                    android:text="Hour"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/check_wednesday" />
 
@@ -375,8 +375,8 @@
                     android:layout_marginLeft="140dp"
                     android:layout_marginTop="3dp"
                     android:ems="10"
+                    android:hint="Hour"
                     android:inputType="number"
-                    android:text="Hour"
                     app:layout_constraintStart_toStartOf="@id/check_wednesday"
                     app:layout_constraintTop_toBottomOf="@+id/check_thursday" />
 
@@ -399,8 +399,8 @@
                     android:layout_marginLeft="140dp"
                     android:layout_marginTop="3dp"
                     android:ems="10"
+                    android:hint="Hour"
                     android:inputType="number"
-                    android:text="Hour"
                     app:layout_constraintStart_toStartOf="@id/check_thursday"
                     app:layout_constraintTop_toBottomOf="@+id/check_friday" />
 
@@ -423,8 +423,8 @@
                     android:layout_marginLeft="156dp"
                     android:layout_marginTop="8dp"
                     android:ems="10"
+                    android:hint="Hour"
                     android:inputType="number"
-                    android:text="Hour"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/check_saturday" />
             </androidx.constraintlayout.widget.ConstraintLayout>
