@@ -27,4 +27,5 @@
     <color name="hintColor">#000000</color>
     <color name="White">#FFFFFF</color>
     <color name="Black">#000000</color>
+    <color name="red">#B71C1C</color>
 </resources>
