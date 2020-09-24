@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import java.sql.ResultSet;
@@ -88,7 +89,6 @@ public class HomeFrag extends Fragment {
         patient = (Patient) getActivity().getIntent().getSerializableExtra("Patient");
         viewSpecialities();
         slider(images);
-
         return view;
     }
 

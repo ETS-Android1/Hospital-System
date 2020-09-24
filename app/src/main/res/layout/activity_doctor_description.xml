@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White"
+    android:background="@drawable/background"
     tools:context=".DoctorDescription">
 
     <androidx.core.widget.NestedScrollView
@@ -230,11 +230,13 @@
                     android:text="Sunday"
                     android:layout_width="wrap_content"
                     android:editable="false"/>
+
                 <RadioButton
                     android:id="@+id/Monday"
-                    android:text="Monday"
                     android:layout_width="wrap_content"
-                    android:editable="false"/>
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:text="Monday" />
                 <RadioButton
                     android:id="@+id/Tuesday"
                     android:text="Tuesday"
@@ -277,8 +279,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="56dp"
         android:layout_marginBottom="76dp"
-        android:backgroundTint="#2196F3"
-        android:backgroundTintMode="src_in"
+        android:background="@drawable/btn_round"
         android:fontFamily="casual"
         android:lineSpacingExtra="8sp"
         android:text="Book an appointment"

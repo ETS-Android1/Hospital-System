@@ -10,10 +10,11 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_Pager"
         android:layout_width="match_parent"
-        android:layout_height="660dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/tab_Layout"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="10dp" />
+        tools:layout_editor_absoluteX="10dp"
+        app:layout_constraintCircleRadius="40dp"/>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_Layout"
@@ -43,7 +44,7 @@
             android:id="@+id/test_tab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/test_lab" />
+            android:icon="@drawable/test_icon" />
     </com.google.android.material.tabs.TabLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
