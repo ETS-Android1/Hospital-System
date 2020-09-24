@@ -235,7 +235,7 @@ public class AdminAddFrag extends Fragment {
         boolean good=true;
         for(int i=0;i<7;i++)
         {
-            if(daysCheck[i].isChecked()&&!daystext[i].getText().toString().equals("Hour"))
+            if(daysCheck[i].isChecked()&&!daystext[i].getText().toString().isEmpty())
             {
                 Toast.makeText(getContext(),daystext[i].getText().toString(),Toast.LENGTH_SHORT);
                 int hour=Integer.parseInt(daystext[i].getText().toString());
@@ -276,9 +276,16 @@ public class AdminAddFrag extends Fragment {
         String description = text_description.getEditText().getText().toString();
         String birthDate = spinner_year.getSelectedItem().toString()+"-"+spinner_month.getSelectedItem().toString()+"-"+spinner_day.getSelectedItem().toString();
         String gender = rdGroup.getCheckedRadioButtonId() == R.id.rdmale ? "Male" : "Female";
-            int mxApp= Integer.parseInt(text_maxApp.getEditText().getText().toString());
+        int mxApp= Integer.parseInt(text_maxApp.getEditText().getText().toString());
 
         Doctor doctor = new Doctor("-1", name, phone, email, gender, birthDate, specialty, description,mxApp);
+        for(int i=0;i<7;i++)
+        {
+            if(daysCheck[i].isChecked())
+            doctor.getAvailableDays()[i]=new Time(Integer.parseInt(daystext[i].getText().toString()),0,0);
+            else
+                doctor.getAvailableDays()[i]=null;
+        }
 
         if (curID == -1)
             addDoctor(doctor, pass, getContext());
@@ -288,13 +295,13 @@ public class AdminAddFrag extends Fragment {
 
     private void EditDoctor(Doctor doctor, int ID, String password, Context context) {
         String query = "UPDATE Doctor SET name='" + doctor.getName() + "',e_mail='" + doctor.getEmail() + "',phone='" + doctor.getPhone() + "',password='" + password + "',birth_date='" + doctor.getDateOfBirth() + "',gender='" + doctor.getGender() + "',specialty='" + doctor.getSpeciality() + "',description='" + doctor.getDescription() + "',max_app_per_day='" + doctor.getMaxAppointmentsPerDay() + "' ";
-        query+=" ,sunday="+((doctor.getTime(0)==null)?"NULL":doctor.getAvailableDays()[0].getTime()+"'");
-        query+=" ,monday="+((doctor.getTime(1)==null)?"NULL":doctor.getAvailableDays()[1].getTime()+"'");
-        query+=" ,tuesday="+((doctor.getTime(2)==null)?"NULL":doctor.getAvailableDays()[2].getTime()+"'");
-        query+=" ,wednesday="+((doctor.getTime(3)==null)?"NULL":doctor.getAvailableDays()[3].getTime()+"'");
-        query+=" ,thursday="+((doctor.getTime(4)==null)?"NULL":doctor.getAvailableDays()[4].getTime()+"'");
-        query+=" ,friday="+((doctor.getTime(5)==null)?"NULL":doctor.getAvailableDays()[5].getTime()+"'");
-        query+=" ,saturday="+((doctor.getTime(6)==null)?"NULL":doctor.getAvailableDays()[6].getTime()+"'");
+        query+=" ,sunday="+((doctor.getTime(0)==null)?"NULL":"'"+doctor.getAvailableDays()[0].getHours()+":0:0'");
+        query+=" ,monday="+((doctor.getTime(1)==null)?"NULL":"'"+doctor.getAvailableDays()[1].getHours()+":0:0'");
+        query+=" ,tuesday="+((doctor.getTime(2)==null)?"NULL":"'"+doctor.getAvailableDays()[2].getHours()+":0:0'");
+        query+=" ,wednesday="+((doctor.getTime(3)==null)?"NULL":"'"+doctor.getAvailableDays()[3].getHours()+":0:0'");
+        query+=" ,thursday="+((doctor.getTime(4)==null)?"NULL":"'"+doctor.getAvailableDays()[4].getHours()+":0:0'");
+        query+=" ,friday="+((doctor.getTime(5)==null)?"NULL":"'"+doctor.getAvailableDays()[5].getHours()+":0:0'");
+        query+=" ,saturday="+((doctor.getTime(6)==null)?"NULL":"'"+doctor.getAvailableDays()[6].getHours()+":0:0'");
         query+=" Where id ='" + ID + "'";
         DataBase.excutQuery(query, context);
 
@@ -320,17 +327,17 @@ public class AdminAddFrag extends Fragment {
 
 
 
-    public void Edit_Click(View v) {
-///load all doctors and print ti
 
 
-    }
+
+
+
 
     private void addDoctor(Doctor doctor, String password, Context context) {
         String query = "INSERT INTO Doctor(name,e_mail,phone,password,birth_date,gender,specialty,description,max_app_per_day ,sunday,monday,tuesday,wednesday,thursday,friday,saturday)"
                 + "VALUES ('" + doctor.getName() + "','" + doctor.getEmail() + "','" + doctor.getPhone() + "','" + password + "','" + doctor.getDateOfBirth() + "','" + doctor.getGender() + "','" + doctor.getSpeciality() + "','" + doctor.getDescription() + "','" + doctor.getMaxAppointmentsPerDay() ;
         for(int i=0;i<7;i++)
-            query+="','" +((doctor.getTime(i)==null)?"NULL":doctor.getAvailableDays()[i].getTime());
+            query+="','" +((doctor.getTime(i)==null)?"NULL":doctor.getAvailableDays()[i].getHours()+":0:0");
               query+=  "');";
         DataBase.excutQuery(query, context);
         Toast.makeText(getContext(),"ADDED",Toast.LENGTH_SHORT).show();
@@ -381,11 +388,10 @@ public class AdminAddFrag extends Fragment {
             text_password.getEditText().setText(result.getString("password"));
             text_phone.getEditText().setText(result.getString("phone"));
             //birth date
-            Date date=result.getDate("birth_date");
-            spinner_day.setSelection(date.getDay());
-            spinner_month.setSelection(date.getMonth());
-
-            int year=date.getYear()-(new java.util.Date().getYear() + 1900-18+1);
+            String[] date=result.getString("birth_date").split("-");
+            spinner_day.setSelection(Integer.parseInt(date[2]));
+            spinner_month.setSelection(Integer.parseInt(date[1]));
+            int year=-Integer.parseInt(date[0])+(new java.util.Date().getYear() + 1900-18+1);
             spinner_year.setSelection(year);
 
             //Spica
@@ -400,11 +406,12 @@ public class AdminAddFrag extends Fragment {
             }
             ///////////////////////////////////////////
             text_description.getEditText().setText(result.getString("description"));
-//            text_maxApp.getEditText().setText(result.getInt("max_app_per_day"));
+            text_maxApp.getEditText().setText(result.getString("max_app_per_day"));
             //Days
+                String[] days={"sunday","monday","tuesday","wednesday","thursday","friday","saturday"};
             for(i=0;i<7;i++)
             {
-               Time t= result.getTime(i);
+               Time t= result.getTime(days[i]);
                 if(t==null)
                 {
                     daysCheck[i].setChecked(false);
@@ -413,13 +420,13 @@ public class AdminAddFrag extends Fragment {
                 else
                 {
                     daysCheck[i].setChecked(true);
-                    daystext[i].setText(String.valueOf(t.getTime()));
+                    daystext[i].setText(String.valueOf(t.getHours()));
                 }
 
             }
 
             ///gender
-            if(result.getString("gender").equals("male"))
+            if(result.getString("gender").equals("Male"))
                 maleButton.setChecked(true);
             else
                 femaleButton.setChecked(true);
