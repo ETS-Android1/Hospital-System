@@ -18,7 +18,6 @@ public class NavigateAdapterFrag extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        System.out.println("--> " +position);
         switch (position)
         {
             case 0:
@@ -26,7 +25,7 @@ public class NavigateAdapterFrag extends FragmentPagerAdapter {
             case 1:
                 return new HomeFrag();
             case 2:
-                return new ProfileFrag();
+                return new tests_frag();
             default:
                 return null;
         }

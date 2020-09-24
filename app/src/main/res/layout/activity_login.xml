@@ -19,7 +19,6 @@
       android:layout_marginTop="2dp"
       android:layout_marginBottom="160dp"
       android:background="@drawable/btn_round"
-      android:onClick="log_in"
       android:text="Login"
       android:textColor="@color/hintColor"
       app:layout_constraintBottom_toTopOf="@+id/tq"
@@ -106,6 +105,18 @@
       app:layout_constraintStart_toEndOf="@+id/tq"
       app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
       app:layout_constraintVertical_bias="0.404" />
+
+  <CheckBox
+      android:id="@+id/remember_checkBox"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginLeft="16dp"
+      android:layout_marginTop="8dp"
+      android:text="Remember me"
+      android:textStyle="bold"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/textpass" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
