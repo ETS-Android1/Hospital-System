@@ -1,6 +1,8 @@
 package com.example.hospital;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -82,16 +84,16 @@ public class AdminRemoveFrag extends Fragment {
         ArrayList<String> nameList = new ArrayList<>();
         for (Pair<Integer, String> item : list)
             nameList.add(item.first + "- " + item.second);
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, nameList);
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.white_list_view, nameList);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               if(Selected.equals("Doctor"))
-                   removeDoctor(list.get(i).first,getContext());
-               else
-                   removePatient(list.get(i).first,getContext());
-               updateListView();
+                if(Selected.equals("Doctor"))
+                    removeDoctor(list.get(i).first,getContext());
+                else
+                    removePatient(list.get(i).first,getContext());
+                updateListView();
             }
         });
     }
@@ -122,18 +124,16 @@ public class AdminRemoveFrag extends Fragment {
         listView = rootView.findViewById(R.id.theList);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                              @Override
-                                              public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                                   Selected=adapterView.getSelectedItem().toString();
-                                                   updateListView();
-                                              }
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Selected=adapterView.getSelectedItem().toString();
+                updateListView();
+            }
 
-                                              @Override
-                                              public void onNothingSelected(AdapterView<?> adapterView) {
-
-                                              }
-                                          }
-        );
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+             }
+        });
         return rootView;
     }
 
@@ -142,6 +142,5 @@ public class AdminRemoveFrag extends Fragment {
     public void onResume() {
         super.onResume();
         updateListView();
-
     }
 }

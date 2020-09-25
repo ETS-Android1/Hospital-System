@@ -17,8 +17,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static com.example.hospital.AdminRemoveFrag.spinner;
-
 public class addTest extends AppCompatActivity {
 
     private static int NUM_ROWS = 1;
@@ -103,25 +101,6 @@ public class addTest extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arrayList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_year.setAdapter(adapter);
-
-        try {
-            Field popup = Spinner.class.getDeclaredField("mPopup");
-            popup.setAccessible(true);
-            // Get private mPopup member variable and try cast to ListPopupWindow
-            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(spinner_day);
-            popupWindow.setHeight(5);
-
-            // Get private mPopup member variable and try cast to ListPopupWindow
-            popupWindow = (android.widget.ListPopupWindow) popup.get(spinner_month);
-            popupWindow.setHeight(5);
-
-            // Get private mPopup member variable and try cast to ListPopupWindow
-            popupWindow = (android.widget.ListPopupWindow) popup.get(spinner_year);
-            popupWindow.setHeight(5);
-        }
-        catch (Exception e){
-            System.out.println("Erorrrrrrrrrrrrrrrrrrrrr");
-        }
     }
 
     public boolean validateDate() {

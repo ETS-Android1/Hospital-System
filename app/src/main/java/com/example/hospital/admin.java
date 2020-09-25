@@ -38,6 +38,7 @@ public class admin extends AppCompatActivity {
         final ViewPager viewPager= findViewById(R.id.viewPager);
         PagerAdapterFreg pagerAdapter= new PagerAdapterFreg(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

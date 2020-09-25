@@ -26,7 +26,6 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
@@ -66,7 +65,7 @@ public class AdminAddFrag extends Fragment {
                     //"(?=.*[a-z])" +         //at least 1 lower case letter
                     //"(?=.*[A-Z])" +         //at least 1 upper case letter
                     "(?=.*[a-zA-Z])" +      //any letter
-                    "(?=.*[@#$%^&+=])" +    //at least 1 special character
+                    "(?=.*[@#$%^_&+=])" +    //at least 1 special character
                     "(?=\\S+$)" +           //no white spaces
                     ".{4,}" +               //at least 4 characters
                     "$");
@@ -142,7 +141,7 @@ public class AdminAddFrag extends Fragment {
         ADD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signup(view);
+                signUp(view);
             }
         });
         Button Edit = rootView.findViewById(R.id.button_edit);
@@ -156,11 +155,16 @@ public class AdminAddFrag extends Fragment {
 
     private boolean validateEmail() {
         String emailInput = text_email.getEditText().getText().toString().trim();
+        int prevDoctor = DataBase.resultSize("select * from Doctor where e_mail = '" + emailInput + "'",getActivity()),
+                prevPatient = DataBase.resultSize("select * from Patient where e_mail = '" + emailInput + "'",getActivity());
         if (emailInput.isEmpty()) {
             text_email.setError("Field can't be empty");
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
             text_email.setError("Please enter a valid email address");
+            return false;
+        }else if(prevDoctor == 1 || prevPatient == 1){
+            text_email.setError("This email is used before");
             return false;
         } else {
             text_email.setError(null);
@@ -196,7 +200,8 @@ public class AdminAddFrag extends Fragment {
     }
 
     private boolean validateBirthDate() {
-     if(spinner_year.getSelectedItemPosition()==0||spinner_day.getSelectedItemPosition()==0||spinner_month.getSelectedItemPosition()==0)
+     if(spinner_year.getSelectedItemPosition()==0 || spinner_day.getSelectedItemPosition()==0
+             ||spinner_month.getSelectedItemPosition()==0)
      return false;
 
      return true;
@@ -249,24 +254,22 @@ public class AdminAddFrag extends Fragment {
             }
         }
         return good;
-
     }
 
 
 
 
-        public void signup(View v) {
+    public void signUp(View v) {
 
-
-            if (!validateEmail() | !validateUsername() | !validatePassword() | !validatePhoneNumber() | !validateBirthDate() | !validateDescription()| !validateDays()) {
-                  return;
-            }
-            if(!maleButton.isChecked()&&!femaleButton.isChecked())
-            {
-                Toast.makeText(getContext(),"Invalid Gender",Toast.LENGTH_SHORT).show();
-                return;
-            }
-
+        if (!validateEmail() | !validateUsername() | !validatePassword() | !validatePhoneNumber()
+                | !validateBirthDate() | !validateDescription()| !validateDays()) {
+            return;
+        }
+        if(!maleButton.isChecked()&&!femaleButton.isChecked())
+        {
+            Toast.makeText(getContext(),"Invalid Gender",Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         String name = text_username.getEditText().getText().toString();
         String email = text_email.getEditText().getText().toString();
@@ -308,40 +311,14 @@ public class AdminAddFrag extends Fragment {
         Toast.makeText(getContext(),"Edit",Toast.LENGTH_SHORT).show();
     }
 
-
-    public void signup2(View v) {
-
-        String name = "moh";
-        String email = "ay@gmail.com";
-        String pass = "132456789";
-        String phone = "0213865";
-        String specialty = "den";
-        String description = "gamazan";
-        String birthDate = "2001-11-11";
-        String gender = "male";
-        Doctor doctor = new Doctor("-1", name, phone, email, gender, birthDate, specialty, description, 0);
-        addDoctor(doctor, pass, getContext());
-        Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
-
-    }
-
-
-
-
-
-
-
-
-
     private void addDoctor(Doctor doctor, String password, Context context) {
         String query = "INSERT INTO Doctor(name,e_mail,phone,password,birth_date,gender,specialty,description,max_app_per_day ,sunday,monday,tuesday,wednesday,thursday,friday,saturday)"
                 + "VALUES ('" + doctor.getName() + "','" + doctor.getEmail() + "','" + doctor.getPhone() + "','" + password + "','" + doctor.getDateOfBirth() + "','" + doctor.getGender() + "','" + doctor.getSpeciality() + "','" + doctor.getDescription() + "','" + doctor.getMaxAppointmentsPerDay() ;
         for(int i=0;i<7;i++)
             query+="','" +((doctor.getTime(i)==null)?"NULL":doctor.getAvailableDays()[i].getHours()+":0:0");
-              query+=  "');";
+        query+=  "');";
         DataBase.excutQuery(query, context);
         Toast.makeText(getContext(),"ADDED",Toast.LENGTH_SHORT).show();
-
     }
 
     public void initializeSpinners() {
@@ -373,6 +350,7 @@ public class AdminAddFrag extends Fragment {
         spinner_year.setAdapter(adapter);
 
     }
+
     void fill_doctor_data(int id) {
         curID = id;
         String query = "SELECT * From Doctor where id='" + id + "';";
@@ -426,7 +404,7 @@ public class AdminAddFrag extends Fragment {
             }
 
             ///gender
-            if(result.getString("gender").equals("Male"))
+            if(result.getString("gender").equalsIgnoreCase("Male"))
                 maleButton.setChecked(true);
             else
                 femaleButton.setChecked(true);
@@ -436,6 +414,7 @@ public class AdminAddFrag extends Fragment {
         }
 
     }
+
     @Override
     public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
     ///    Toast.makeText(getContext(),"try",Toast.LENGTH_SHORT).show();
@@ -445,8 +424,6 @@ public class AdminAddFrag extends Fragment {
             contextMenu.add(0, Menu.FIRST,1,doc.first+"- "+doc.second);
         super.onCreateContextMenu(contextMenu, view, contextMenuInfo);
     }
-
-
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
@@ -466,5 +443,4 @@ public class AdminAddFrag extends Fragment {
         }
         return list;
     }
-
 }
