@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity android:name=".Appointment_calen"/>
         <activity android:name=".NavigateActivity"/>
         <activity android:name=".admin" />
         <activity android:name=".addTest"/>
