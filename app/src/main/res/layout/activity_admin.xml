@@ -31,16 +31,12 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
+            android:paddingTop="10dp"
             android:text="Admin"
+            android:layout_marginHorizontal="150dp"
             android:textColor="#AAAAAA"
             android:textSize="36sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/Output"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
     </LinearLayout>
 
     <com.google.android.material.tabs.TabLayout
@@ -67,8 +63,8 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
-        android:layout_width="396dp"
-        android:layout_height="597dp"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -17,6 +17,7 @@
         android:fontFamily="cursive"
         android:text="Appointment Details"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="30sp"
@@ -38,7 +39,7 @@
         android:text="number"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#3F51B5"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintStart_toEndOf="@+id/numberLabel"
@@ -53,9 +54,9 @@
         android:layout_marginTop="24dp"
         android:fontFamily="serif"
         android:text="time"
+        android:textColor="@color/white"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#3F51B5"
         android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintStart_toEndOf="@+id/timeLabel"
@@ -85,6 +86,7 @@
         android:layout_marginTop="12dp"
         android:fontFamily="casual"
         android:text="your number is :"
+        android:textColor="@color/white"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
@@ -102,6 +104,7 @@
         android:fontFamily="casual"
         android:text="doctor's arrival time :"
         android:textAlignment="viewStart"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
         android:textStyle="italic"
@@ -116,6 +119,7 @@
         android:layout_marginTop="52dp"
         android:fontFamily="casual"
         android:text="Date:"
+        android:textColor="@color/white"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,6 +131,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="35dp"
+        android:textColorHint="@color/white"
         android:layout_marginEnd="53dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView4"
@@ -136,6 +141,7 @@
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="@color/white"
             android:hint="Tap to insert date" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,6 +154,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="39dp"
         android:text="Available Days: "
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -167,21 +174,25 @@
             android:id="@+id/Saturday"
             android:text="Saturday"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
             android:editable="false"/>
         <RadioButton
             android:id="@+id/Sunday"
             android:text="Sunday"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
             android:editable="false"/>
         <RadioButton
             android:id="@+id/Monday"
             android:text="Monday"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
             android:editable="false"/>
         <RadioButton
             android:id="@+id/Tuesday"
             android:text="Tuesday"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
             android:editable="false"/>
     </TableRow>
     <TableRow
@@ -198,16 +209,19 @@
             android:id="@+id/Wednesday"
             android:text="Wednesday"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
             android:editable="false"/>
         <RadioButton
             android:id="@+id/Thursday"
             android:text="Thursday"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
             android:editable="false"/>
         <RadioButton
             android:id="@+id/Friday"
             android:text="Friday"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
             android:editable="false"/>
 
     </TableRow>

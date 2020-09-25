@@ -31,7 +31,7 @@ public class login extends AppCompatActivity {
         text_signup=(TextView)findViewById(R.id.tsignup);
         remember_checkBox = (CheckBox) findViewById(R.id.remember_checkBox);
         loginButton = (Button) findViewById(R.id.buttonLogin);
-        //forgetMe();
+        forgetMe();
         rememberMe();
 
         text_signup.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +46,7 @@ public class login extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                log_in();
+                logIn();
             }
         });
     }
@@ -62,7 +62,7 @@ public class login extends AppCompatActivity {
         }
     }
 
-    private boolean validatepass() {
+    private boolean validatePass() {
         String usernameInput = tpassword.getEditText().getText().toString().trim();
         if (usernameInput.isEmpty()) {
             tpassword.setError("Field can't be empty");
@@ -74,12 +74,25 @@ public class login extends AppCompatActivity {
     }
 
 
-    public void log_in() {
-        if ( !validateUsername() | !validatepass() ) {
+    public void logIn() {
+        if ( !validateUsername() | !validatePass() ) {
             return;
         }
         String email = temail.getEditText().getText().toString().trim();
         String password = tpassword.getEditText().getText().toString();
+
+        SQLiteDB db= new SQLiteDB(this);
+        if(remember_checkBox.isChecked())
+        {
+            db.addUser(email,password);
+        }
+
+        if(email.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin"))
+        {
+            Intent intent = new Intent(this,admin.class);
+            startActivity(intent);
+        }
+
         int prev_patient = DataBase.resultSize("select * from Patient where e_mail = '" +email+"' " +
                 "and password = '" + password + "'",this);
         int prev_doctor = DataBase.resultSize("select * from Doctor where e_mail = '" +email+"' " +
@@ -88,12 +101,6 @@ public class login extends AppCompatActivity {
         {
             Toast.makeText(this,"Wrong e-mail or password",Toast.LENGTH_LONG).show();
             return;
-        }
-
-        SQLiteDB db= new SQLiteDB(this);
-        if(remember_checkBox.isChecked())
-        {
-            db.addUser(email,password);
         }
 
         Person user;
@@ -122,7 +129,7 @@ public class login extends AppCompatActivity {
             Pair<String,String> pair = db.getUser();
             temail.getEditText().setText(pair.first);
             tpassword.getEditText().setText(pair.second);
-            log_in();
+            logIn();
         }
     }
 

@@ -85,7 +85,7 @@ public class tests_frag extends Fragment {
         tests = view.findViewById(R.id.viewTests);
         addButton = view.findViewById(R.id.AddTest);
         list = loadData();
-        testsData = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,list);
+        testsData = new ArrayAdapter(getActivity(),R.layout.white_list_view ,list);
         tests.setAdapter(testsData);
 
         tests.setOnItemClickListener(new AdapterView.OnItemClickListener() {
