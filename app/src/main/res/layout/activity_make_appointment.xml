@@ -4,20 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White"
+    android:background="@drawable/background"
     tools:context=".MakeAppointment">
+
+    <TextView
+        android:id="@+id/appDetail"
+        android:layout_width="247dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="148dp"
+        android:fontFamily="cursive"
+        android:text="Appointment Details"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/availableDays2" />
 
     <TextView
         android:id="@+id/number"
         android:layout_width="107dp"
         android:layout_height="35dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="serif"
         android:text="number"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#3F51B5"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintStart_toEndOf="@+id/numberLabel"
@@ -28,40 +50,43 @@
         android:layout_width="107dp"
         android:layout_height="35dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="serif"
         android:text="time"
+        android:textColor="@color/white"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#3F51B5"
         android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintStart_toEndOf="@+id/timeLabel"
         app:layout_constraintTop_toBottomOf="@+id/appDetail" />
 
-    <TextView
-        android:id="@+id/timeLabel"
-        android:layout_width="188dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="casual"
-        android:text="doctor's arrival time :"
-        android:textAlignment="viewStart"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="18sp"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appDetail" />
+    <ImageButton
+        android:id="@+id/confirmButton"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="60dp"
+
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberLabel"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/confirm_logo" />
 
     <TextView
         android:id="@+id/numberLabel"
         android:layout_width="164dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="casual"
         android:text="your number is :"
+        android:textColor="@color/white"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
@@ -70,32 +95,31 @@
         app:layout_constraintTop_toBottomOf="@+id/timeLabel" />
 
     <TextView
-        android:id="@+id/appDetail"
-        android:layout_width="247dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="148dp"
-        android:fontFamily="cursive"
-        android:text="Appointment Details"
-        android:textAlignment="center"
-        android:textAllCaps="false"
+        android:id="@+id/timeLabel"
+        android:layout_width="188dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="casual"
+        android:text="doctor's arrival time :"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:typeface="normal"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18sp"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/appDetail" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="67dp"
         android:layout_height="30dp"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="52dp"
         android:fontFamily="casual"
         android:text="Date:"
+        android:textColor="@color/white"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +130,8 @@
         android:layout_width="231dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="35dp"
+        android:textColorHint="@color/white"
         android:layout_marginEnd="53dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView4"
@@ -116,8 +141,90 @@
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="@color/white"
             android:hint="Tap to insert date" />
     </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/textDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="39dp"
+        android:text="Available Days: "
+        android:textColor="@color/white"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
+    <TableRow
+        android:id="@+id/availableDays"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginTop="15dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="324dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDays" >
+        <RadioButton
+            android:id="@+id/Saturday"
+            android:text="Saturday"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:editable="false"/>
+        <RadioButton
+            android:id="@+id/Sunday"
+            android:text="Sunday"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:editable="false"/>
+        <RadioButton
+            android:id="@+id/Monday"
+            android:text="Monday"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:editable="false"/>
+        <RadioButton
+            android:id="@+id/Tuesday"
+            android:text="Tuesday"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:editable="false"/>
+    </TableRow>
+    <TableRow
+        android:id="@+id/availableDays2"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginTop="5dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="324dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/availableDays" >
+        <RadioButton
+            android:id="@+id/Wednesday"
+            android:text="Wednesday"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:editable="false"/>
+        <RadioButton
+            android:id="@+id/Thursday"
+            android:text="Thursday"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:editable="false"/>
+        <RadioButton
+            android:id="@+id/Friday"
+            android:text="Friday"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:editable="false"/>
+
+    </TableRow>
 
     <ImageView
         android:id="@+id/imageView2"
@@ -130,19 +237,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/calendar_logo" />
-
-    <ImageButton
-        android:id="@+id/confirmButton"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="108dp"
-        android:backgroundTint="#FFFFFF"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numberLabel"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/confirm_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

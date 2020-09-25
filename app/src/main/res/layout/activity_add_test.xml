@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".addTest">
+
+
+    <Button
+        android:id="@+id/addBTN"
+        android:layout_width="135dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="147dp"
+        android:layout_marginLeft="147dp"
+        android:layout_marginEnd="147dp"
+        android:layout_marginRight="147dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/btn_round"
+        android:backgroundTintMode="src_in"
+        android:onClick="addText"
+        android:text="Add"
+        android:textColor="@color/White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/testName"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="Add Test Name"
+        android:textColorHint="@color/white"
+        android:textColor="@color/White"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/test_Date"
+        android:layout_width="117dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Date :"
+        android:textColor="@color/White"
+        android:textSize="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/testResult" />
+
+    <EditText
+        android:id="@+id/testResult"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="Add Test Result"
+        android:textColorHint="@color/white"
+        android:textColor="@color/White"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/testName" />
+
+    <Spinner
+        android:id="@+id/spinner_day_test"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/White"
+        android:dropDownSelector="@drawable/circule"
+        android:persistentDrawingCache="animation"
+        android:scrollbarSize="50dp"
+        app:layout_constraintStart_toEndOf="@+id/test_Date"
+        app:layout_constraintTop_toBottomOf="@+id/testResult" />
+
+    <Spinner
+        android:id="@+id/spinner_month_test"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/White"
+        app:layout_constraintStart_toEndOf="@+id/spinner_day_test"
+        app:layout_constraintTop_toBottomOf="@+id/testResult" />
+
+    <Spinner
+        android:id="@+id/spinner_year_test"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/White"
+        app:layout_constraintStart_toEndOf="@+id/spinner_month_test"
+        app:layout_constraintTop_toBottomOf="@+id/testResult" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="serif"
+        android:text="Add a new test :"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

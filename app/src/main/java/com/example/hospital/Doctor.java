@@ -40,90 +40,80 @@ public class Doctor extends Person {
         return Description;
     }
 
-    public boolean isAvailable(Date date , Context context)
-    {
-        if(availableDays[date.getDay()] == null)
+    public boolean isAvailable(Date date, Context context) {
+        if (availableDays[date.getDay()] == null)
             return false;
 
-        int prevAppointments = Appointment.numberInQueue(date,this,context);
+        int prevAppointments = Appointment.numberInQueue(date, this, context);
 
-        if(prevAppointments == maxAppointmentsPerDay)
-        {
+        if (prevAppointments == maxAppointmentsPerDay) {
             return false;
         }
         return true;
     }
-    public void setAvailableDays(ResultSet availableDays)
-    {
+
+    public void setAvailableDays(ResultSet availableDays) {
         try {
-            this.availableDays[6] = availableDays.getTime("saturday");
             this.availableDays[0] = availableDays.getTime("sunday");
             this.availableDays[1] = availableDays.getTime("monday");
             this.availableDays[2] = availableDays.getTime("tuesday");
             this.availableDays[3] = availableDays.getTime("wednesday");
             this.availableDays[4] = availableDays.getTime("thursday");
             this.availableDays[5] = availableDays.getTime("friday");
+            this.availableDays[6] = availableDays.getTime("saturday");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static ArrayList<Doctor> getDoctors(String query , String type ,Context context)
-    {
+    public static ArrayList<Doctor> getDoctors(String value, String attribute, Context context) {
         ResultSet resultSet = null;
         ArrayList<Doctor> doctors = new ArrayList<>();
-        switch (type)
-        {
-            case "id":
-                resultSet = DataBase.excutQuery("select * from Doctor where id = '" + query +"'",context);
-                break;
-            case "specialty":
-                resultSet = DataBase.excutQuery("select * from Doctor where specialty = '" + query +"'",context);
-                break;
-        }
-            try {
-                while (resultSet.next()) {
-                Doctor doctor = new Doctor(resultSet.getString("id") ,resultSet.getString("name"), resultSet.getString("phone") ,
-                    resultSet.getString("e_mail") ,resultSet.getString("gender"),resultSet.getString("birth_date")
-                        , resultSet.getString("specialty"),resultSet.getString("description"),
+        resultSet = DataBase.excutQuery("select * from Doctor where " + attribute + " = '" + value + "'", context);
+        try {
+            while (resultSet.next()) {
+                Doctor doctor = new Doctor(resultSet.getString("id"), resultSet.getString("name"), resultSet.getString("phone"),
+                        resultSet.getString("e_mail"), resultSet.getString("gender"), resultSet.getString("birth_date")
+                        , resultSet.getString("specialty"), resultSet.getString("description"),
                         Integer.parseInt(resultSet.getString("max_app_per_day")));
                 doctor.setAvailableDays(resultSet);
                 doctors.add(doctor);
-                }
-            }catch (SQLException e)
-            {
             }
+        } catch (SQLException e) {
+        }
         return doctors;
     }
 
-    public static Doctor getDoctor(String query , String type,Context context)
-    {
+    public static Doctor getDoctor(String value, String attribute, Context context) {
         ResultSet resultSet = null;
-        switch (type)
-        {
-            case "id":
-                resultSet = DataBase.excutQuery("select * from Doctor where id = '" + query +"'",context);
-                break;
-            case "specialty":
-                resultSet = DataBase.excutQuery("select * from Doctor where specialty = '" + query +"'",context);
-                break;
-        }
+        resultSet = DataBase.excutQuery("select * from Doctor where " + attribute + " = '" + value + "'", context);
         try {
             resultSet.next();
-                Doctor doctor = new Doctor(resultSet.getString("id") ,resultSet.getString("name"), resultSet.getString("phone") ,
-                        resultSet.getString("e_mail") ,resultSet.getString("gender"),resultSet.getString("birth_date")
-                        , resultSet.getString("specialty"),resultSet.getString("description"),
-                        Integer.parseInt(resultSet.getString("max_app_per_day")));
-                doctor.setAvailableDays(resultSet);
-                return doctor;
-        }catch (SQLException e)
-        {
+            Doctor doctor = new Doctor(resultSet.getString("id"), resultSet.getString("name"), resultSet.getString("phone"),
+                    resultSet.getString("e_mail"), resultSet.getString("gender"), resultSet.getString("birth_date")
+                    , resultSet.getString("specialty"), resultSet.getString("description"),
+                    Integer.parseInt(resultSet.getString("max_app_per_day")));
+            doctor.setAvailableDays(resultSet);
+            return doctor;
+        } catch (SQLException e) {
         }
         return null;
+    }
+
+    public int getMaxAppointmentsPerDay() {
+        return maxAppointmentsPerDay;
+    }
+
+    public void setMaxAppointmentsPerDay(int maxAppointmentsPerDay) {
+        this.maxAppointmentsPerDay = maxAppointmentsPerDay;
     }
 
     public Time getTime (int day)
     {
         return availableDays[day];
+    }
+
+    public Time[] getAvailableDays() {
+        return availableDays;
     }
 }

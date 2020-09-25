@@ -50,35 +50,37 @@ public class DataBase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return resultSet;
     }
 
-    public static void setIp(String ip) {
+    public static void setIp(String ip,Context context) {
         DataBase.ip = ip;
-        setUrl(ip,port,dataBase);
+        setUrl(ip,port,dataBase,context);
     }
 
-    public static void setPort(String port) {
+    public static void setPort(String port,Context context) {
         DataBase.port = port;
-        setUrl(ip,port,dataBase);
+        setUrl(ip,port,dataBase,context);
     }
 
-    public static void setDataBase(String dataBase) {
+    public static void setDataBase(String dataBase,Context context) {
         DataBase.dataBase = dataBase;
-        setUrl(ip,port,dataBase);
+        setUrl(ip,port,dataBase,context);
     }
 
-    public static void setUserName(String userName) {
+    public static void setUserName(String userName,Context context) {
         DataBase.userName = userName;
+        setConnection(context);
     }
 
-    public static void setPassWord(String passWord) {
+    public static void setPassword(String passWord,Context context) {
         DataBase.passWord = passWord;
+        setConnection(context);
     }
 
-    public static void setUrl(String ip , String port , String dataBase) {
+    public static void setUrl(String ip , String port , String dataBase ,Context  context) {
         DataBase.url = "jdbc:jtds:sqlserver://" + ip + ":" + port + "/" + dataBase;
+        setConnection(context);
     }
 
     public static int resultSize(String query, Context context)

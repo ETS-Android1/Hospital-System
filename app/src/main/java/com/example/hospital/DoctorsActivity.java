@@ -1,6 +1,8 @@
 package com.example.hospital;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavGraph;
+import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +15,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class DoctorsActivity extends AppCompatActivity {
+    public ArrayList<Doctor> doctors = new ArrayList<>();
+    public DoctorArrayAdapter doctorAdapter;
     public ListView listView;
-    public ArrayAdapter<String> doctorNames;
     public String speciality;
-    public ArrayList<Doctor> Doctors = new ArrayList<>();
+    public Patient patient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,35 +27,37 @@ public class DoctorsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_doctors);
 
         listView = (ListView)findViewById(R.id.doctorsList);
-        doctorNames = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
-        listView.setAdapter(doctorNames);
+        doctorAdapter = new DoctorArrayAdapter(this,R.layout.doctor_list,doctors);
+        listView.setAdapter(doctorAdapter);
         speciality = getIntent().getExtras().get("speciality").toString();
         ((TextView)findViewById(R.id.textView2)).setText(speciality);
+
+        patient = (Patient) getIntent().getSerializableExtra("Patient");
 
         getDoctors();
     }
 
     public void getDoctors()
     {
-        final ArrayList<Doctor> doctors = Doctor.getDoctors(speciality,"specialty",this);
+        final ArrayList<Doctor> Doctors = Doctor.getDoctors(speciality,"specialty",this);
 
-        for (int i = 0 ; i < doctors.size();i++)
+        for (Doctor doctor : Doctors)
         {
-            doctorNames.add(doctors.get(i).getName().toString());
-
+            doctors.add(doctor);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    doctorSelected(doctors.get(i).getID());
+                    doctorSelected(doctors.get(i));
                 }
             });
             }
     }
 
-    public void doctorSelected(String ID)
+    public void doctorSelected(Doctor doctor)
     {
         Intent intent = new Intent(this,DoctorDescription.class);
-        intent.putExtra("id", ID);
+        intent.putExtra("Doctor", doctor);
+        intent.putExtra("Patient",patient);
         startActivity(intent);
     }
 }

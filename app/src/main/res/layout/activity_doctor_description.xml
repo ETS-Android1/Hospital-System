@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White"
+    android:background="@drawable/background"
     tools:context=".DoctorDescription">
 
     <androidx.core.widget.NestedScrollView
@@ -34,6 +34,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="35dp"
+                android:textColor="@color/white"
                 android:text="Name "
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -46,6 +47,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="56dp"
                 android:layout_marginTop="32dp"
+                android:textColor="@color/white"
                 android:fontFamily="casual"
                 android:text="Name :"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -58,6 +60,7 @@
                 android:layout_width="67dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="76dp"
+                android:textColor="@color/white"
                 android:layout_marginTop="30dp"
                 android:fontFamily="casual"
                 android:text="Age :"
@@ -72,6 +75,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
                 android:text="Age"
+                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintStart_toEndOf="@+id/textView7"
                 app:layout_constraintTop_toBottomOf="@+id/name" />
@@ -83,6 +87,7 @@
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="36dp"
                 android:fontFamily="casual"
+                android:textColor="@color/white"
                 android:text="Speciality :"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,6 +100,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
                 android:text="spec"
+                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/age" />
@@ -103,13 +109,15 @@
                 android:id="@+id/textView"
                 android:layout_width="106dp"
                 android:layout_height="33dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="casual"
                 android:text="Phone :"
+                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                app:layout_constraintTop_toBottomOf="@+id/speciality" />
 
             <TextView
                 android:id="@+id/phone"
@@ -118,6 +126,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
                 android:text="phone"
+                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintStart_toEndOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/speciality" />
@@ -129,6 +138,7 @@
                 android:layout_marginStart="52dp"
                 android:layout_marginTop="36dp"
                 android:fontFamily="casual"
+                android:textColor="@color/white"
                 android:text="E-mail :"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintStart_toStartOf="parent"
@@ -138,8 +148,10 @@
                 android:id="@+id/email"
                 android:layout_width="200dp"
                 android:layout_height="36dp"
+                android:textColor="@color/white"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="28dp"
                 android:text="email"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintStart_toEndOf="@+id/textView10"
@@ -152,6 +164,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="36dp"
                 android:text="gender"
+                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintStart_toEndOf="@+id/textView5"
                 app:layout_constraintTop_toBottomOf="@+id/email" />
@@ -163,6 +176,7 @@
                 android:layout_marginStart="52dp"
                 android:layout_marginTop="40dp"
                 android:fontFamily="casual"
+                android:textColor="@color/white"
                 android:text="Gender :"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintStart_toStartOf="parent"
@@ -173,23 +187,111 @@
                 android:layout_width="135dp"
                 android:layout_height="43dp"
                 android:layout_marginStart="112dp"
-                android:layout_marginTop="28dp"
+                android:textColor="@color/white"
+                android:layout_marginTop="30dp"
                 android:fontFamily="casual"
                 android:text="Description :"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/availableDays2" />
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="314dp"
                 android:layout_height="242dp"
+                android:layout_marginStart="26dp"
                 android:layout_marginTop="30dp"
+                android:textColor="@color/white"
+                android:layout_marginEnd="39dp"
                 android:text="desc"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"
-                tools:layout_editor_absoluteX="26dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
+            <TextView
+                android:id="@+id/textDays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="39dp"
+                android:fontFamily="casual"
+                android:textColor="@color/white"
+                android:text="Available Days: "
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.062"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gender" />
+
+            <TableRow
+                android:id="@+id/availableDays"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_marginTop="20dp"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="324dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textDays" >
+                <RadioButton
+                    android:id="@+id/Saturday"
+                    android:text="Saturday"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:editable="false"/>
+                <RadioButton
+                    android:id="@+id/Sunday"
+                    android:textColor="@color/white"
+                    android:text="Sunday"
+                    android:layout_width="wrap_content"
+                    android:editable="false"/>
+
+                <RadioButton
+                    android:id="@+id/Monday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:editable="false"
+                    android:text="Monday" />
+                <RadioButton
+                    android:id="@+id/Tuesday"
+                    android:text="Tuesday"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:editable="false"/>
+            </TableRow>
+            <TableRow
+                android:id="@+id/availableDays2"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_marginTop="5dp"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="324dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/availableDays" >
+                <RadioButton
+                    android:id="@+id/Wednesday"
+                    android:text="Wednesday"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:editable="false"/>
+                <RadioButton
+                    android:id="@+id/Thursday"
+                    android:text="Thursday"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:editable="false"/>
+                <RadioButton
+                    android:id="@+id/Friday"
+                    android:text="Friday"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:editable="false"/>
+
+            </TableRow>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -199,8 +301,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="56dp"
         android:layout_marginBottom="76dp"
-        android:backgroundTint="#2196F3"
-        android:backgroundTintMode="src_in"
+        android:background="@drawable/btn_round"
         android:fontFamily="casual"
         android:lineSpacingExtra="8sp"
         android:text="Book an appointment"
