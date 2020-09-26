@@ -13,6 +13,7 @@ public abstract class Person implements Serializable {
     private String Gender;
     private String dateOfBirth;
     private int Age;
+    private String Password;
 
     public Person(String name, String phone, String email, String gender, String dateOfBirth) {
         Name = name;
@@ -31,6 +32,11 @@ public abstract class Person implements Serializable {
         Gender = gender;
         this.dateOfBirth = dateOfBirth;
         calculateAge(dateOfBirth);
+    }
+
+    public Person(String ID, String name, String phone, String email, String gender, String dateOfBirth, String password) {
+       this(ID,name,phone,email,gender,dateOfBirth);
+        Password = password;
     }
 
     public void calculateAge(String date)
@@ -97,5 +103,13 @@ public abstract class Person implements Serializable {
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
     }
 }

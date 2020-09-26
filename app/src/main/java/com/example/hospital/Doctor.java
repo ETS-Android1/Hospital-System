@@ -25,8 +25,8 @@ public class Doctor extends Person {
         Description = description;
     }
 
-    public Doctor(String ID, String name, String phone, String email, String gender, String dateOfBirth, String speciality, String description, int maxAppointmentsPerDay) {
-        super(ID, name, phone, email, gender, dateOfBirth);
+    public Doctor(String ID, String name, String phone, String email, String gender, String dateOfBirth, String speciality, String description, int maxAppointmentsPerDay,String password) {
+        super(ID, name, phone, email, gender, dateOfBirth,password);
         Speciality = speciality;
         Description = description;
         this.maxAppointmentsPerDay = maxAppointmentsPerDay;
@@ -75,7 +75,7 @@ public class Doctor extends Person {
                 Doctor doctor = new Doctor(resultSet.getString("id"), resultSet.getString("name"), resultSet.getString("phone"),
                         resultSet.getString("e_mail"), resultSet.getString("gender"), resultSet.getString("birth_date")
                         , resultSet.getString("specialty"), resultSet.getString("description"),
-                        Integer.parseInt(resultSet.getString("max_app_per_day")));
+                        Integer.parseInt(resultSet.getString("max_app_per_day")),resultSet.getString("password"));
                 doctor.setAvailableDays(resultSet);
                 doctors.add(doctor);
             }
@@ -92,7 +92,7 @@ public class Doctor extends Person {
             Doctor doctor = new Doctor(resultSet.getString("id"), resultSet.getString("name"), resultSet.getString("phone"),
                     resultSet.getString("e_mail"), resultSet.getString("gender"), resultSet.getString("birth_date")
                     , resultSet.getString("specialty"), resultSet.getString("description"),
-                    Integer.parseInt(resultSet.getString("max_app_per_day")));
+                    Integer.parseInt(resultSet.getString("max_app_per_day")),resultSet.getString("password"));
             doctor.setAvailableDays(resultSet);
             return doctor;
         } catch (SQLException e) {

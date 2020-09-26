@@ -11,6 +11,7 @@
         android:id="@+id/view_Pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="53dp"
         app:layout_constraintBottom_toTopOf="@+id/tab_Layout"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="10dp"

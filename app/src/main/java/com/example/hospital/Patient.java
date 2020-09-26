@@ -11,8 +11,8 @@ public class Patient extends Person {
         super(name, phone, email, gender, dateOfBirth);
     }
 
-    public Patient(String ID, String name, String phone, String email, String gender, String dateOfBirth) {
-        super(ID, name, phone, email, gender, dateOfBirth);
+    public Patient(String ID, String name, String phone, String email, String gender, String dateOfBirth ,String Ppassword) {
+        super(ID, name, phone, email, gender, dateOfBirth,Ppassword);
     }
 
 
@@ -22,7 +22,8 @@ public class Patient extends Person {
         try{
             resultSet.next();
             Patient patient = new Patient(resultSet.getString("id"),resultSet.getString("name"),resultSet.getString("phone"),
-                    resultSet.getString("e_mail"),resultSet.getString("gender"),resultSet.getString("birth_date"));
+                    resultSet.getString("e_mail"),resultSet.getString("gender"),resultSet.getString("birth_date"),
+                    resultSet.getString("password"));
             return patient;
         }catch (SQLException e)
         {

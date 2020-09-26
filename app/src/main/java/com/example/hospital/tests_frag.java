@@ -81,7 +81,7 @@ public class tests_frag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_tests_frag,container,false);
-        patient = (Patient) getActivity().getIntent().getSerializableExtra("Patient");
+        patient = (Patient) getActivity().getIntent().getSerializableExtra("Person");
         tests = view.findViewById(R.id.viewTests);
         addButton = view.findViewById(R.id.AddTest);
         list = loadData();
@@ -102,7 +102,7 @@ public class tests_frag extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),addTest.class);
-                intent.putExtra("Patient",patient);
+                intent.putExtra("Person",patient);
                 startActivity(intent);
             }
         });
