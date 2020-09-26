@@ -62,7 +62,7 @@
         app:layout_constraintStart_toEndOf="@+id/timeLabel"
         app:layout_constraintTop_toBottomOf="@+id/appDetail" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/confirmButton"
         android:layout_width="75dp"
         android:layout_height="75dp"
@@ -142,7 +142,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/white"
-            android:hint="Tap to insert date" />
+            android:textColorHint="@color/white"
+            android:hint="Tap to insert date"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
 

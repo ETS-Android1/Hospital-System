@@ -29,7 +29,6 @@ import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class HomeFrag extends Fragment {
@@ -124,21 +123,21 @@ public class HomeFrag extends Fragment {
 
                     ImageButton imageButton = new ImageButton(getActivity());
 
-                    if(specialities.equals("DENTIST"))
+                    if(specialities.equalsIgnoreCase("DENTIST"))
                         imageButton.setImageResource(R.drawable.dentist);
-                    else if(specialities.equals("UROLOGY"))
+                    else if(specialities.equalsIgnoreCase("UROLOGY"))
                         imageButton.setImageResource(R.drawable.urology);
-                    else if(specialities.equals("INTERNAL"))
+                    else if(specialities.equalsIgnoreCase("INTERNAL"))
                         imageButton.setImageResource(R.drawable.internal);
-                    else if(specialities.equals("FAMILY"))
+                    else if(specialities.equalsIgnoreCase("FAMILY"))
                         imageButton.setImageResource(R.drawable.family);
-                    else if(specialities.equals("OPHTHALMOLOGY"))
+                    else if(specialities.equalsIgnoreCase("OPHTHALMOLOGY"))
                         imageButton.setImageResource(R.drawable.ophthalmology);
-                    else if(specialities.equals("NEUROLOGY"))
+                    else if(specialities.equalsIgnoreCase("NEUROLOGY"))
                         imageButton.setImageResource(R.drawable.neurlogy);
-                    else if(specialities.equals("SURGERY"))
+                    else if(specialities.equalsIgnoreCase("SURGERY"))
                         imageButton.setImageResource(R.drawable.surgery);
-                    else if(specialities.equals("PEDIATRICS"))
+                    else if(specialities.equalsIgnoreCase("PEDIATRICS"))
                         imageButton.setImageResource(R.drawable.pediatrics);
 
                     imageButton.setLayoutParams(new TableRow.LayoutParams(

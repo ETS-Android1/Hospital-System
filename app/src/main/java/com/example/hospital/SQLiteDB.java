@@ -20,15 +20,16 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-            String user = "CREATE TABLE "+ tableName +" (id INTEGER PRIMARY KEY AUTOINCREMENT ,email VARCHAR , password VARCHAR)";
-            sqLiteDatabase.execSQL(user);
+        String user = "DROP TABLE IF EXISTS " + tableName;
+        sqLiteDatabase.execSQL(user);
+
+        user = "CREATE TABLE "+ tableName +" (id INTEGER PRIMARY KEY AUTOINCREMENT ,email VARCHAR , password VARCHAR)";
+        sqLiteDatabase.execSQL(user);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-       /* String user = "DROP TABLE IF EXISTS " + tableName;
-        sqLiteDatabase.execSQL(user);
-        onCreate(sqLiteDatabase);*/
+
     }
 
     //used when logout

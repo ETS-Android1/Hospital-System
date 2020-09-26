@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +34,7 @@ public class MakeAppointment extends AppCompatActivity {
     public TextView numberLabel;
     public TextView time;
     public TextView number;
-    public ImageButton confirmButton;
+    public ImageView confirmButton;
     public String numberInQueue;
     public Date date;
 
@@ -51,9 +52,6 @@ public class MakeAppointment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_appointment);
 
-        doctor = (Doctor) getIntent().getSerializableExtra("Doctor");
-        patient = (Patient) getIntent().getSerializableExtra("Person");
-
         dateText = (TextInputEditText) findViewById(R.id.date);
         dateText.setInputType(InputType.TYPE_NULL);
         textInputLayout = (TextInputLayout) findViewById(R.id.textInputLayout);
@@ -62,7 +60,7 @@ public class MakeAppointment extends AppCompatActivity {
         timeLabel = (TextView) findViewById(R.id.timeLabel);
         time = (TextView) findViewById(R.id.time);
         number = (TextView) findViewById(R.id.number);
-        confirmButton = (ImageButton) findViewById(R.id.confirmButton);
+        confirmButton = (ImageView) findViewById(R.id.confirmButton);
         Saturday = (RadioButton) findViewById(R.id.Saturday);
         Sunday = (RadioButton) findViewById(R.id.Sunday);
         Monday = (RadioButton) findViewById(R.id.Monday);
@@ -77,6 +75,9 @@ public class MakeAppointment extends AppCompatActivity {
         Wednesday.setClickable(false);
         Thursday.setClickable(false);
         Friday.setClickable(false);
+        doctor = (Doctor) getIntent().getSerializableExtra("Doctor");
+        patient = (Patient) getIntent().getSerializableExtra("Patient");
+        System.out.println("----> : " +patient.getID());
         setAvailableDays();
         hideDetails();
 
@@ -191,7 +192,8 @@ public class MakeAppointment extends AppCompatActivity {
         Toast.makeText(this, "Booked Successfully", Toast.LENGTH_LONG).show();
 
         Intent intent = new Intent(this, NavigateActivity.class);
-        intent.putExtra("Patient",patient);
+        intent.putExtra("Person",patient);
+        intent.putExtra("pageIndex",1);
         startActivity(intent);
     }
 

@@ -49,5 +49,5 @@ public class NavigateActivity extends AppCompatActivity {
         viewPager.setCurrentItem(pageIndex);
         Toast.makeText(this,"Welcome " + patient.getName() ,Toast.LENGTH_LONG).show();
     }
-    
+
 }

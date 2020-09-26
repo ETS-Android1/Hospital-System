@@ -28,9 +28,9 @@ public class DoctorsActivity extends AppCompatActivity {
         doctorAdapter = new DoctorArrayAdapter(this,R.layout.doctor_list,doctors);
         listView.setAdapter(doctorAdapter);
         speciality = getIntent().getExtras().get("speciality").toString();
-        ((TextView)findViewById(R.id.textView2)).setText(speciality);
+        ((TextView)findViewById(R.id.textView2)).setText(speciality + " Doctors");
 
-        patient = (Patient) getIntent().getSerializableExtra("Person");
+        patient = (Patient) getIntent().getSerializableExtra("Patient");
 
         getDoctors();
     }

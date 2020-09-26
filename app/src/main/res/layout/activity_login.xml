@@ -98,7 +98,7 @@
       android:layout_marginTop="80dp"
       android:layout_marginBottom="1dp"
       android:text="Sign Up"
-      android:textColor="	#730000"
+      android:textColor="#007E73"
       android:textSize="19dp"
       android:textStyle="bold"
       app:layout_constraintBottom_toBottomOf="parent"

@@ -62,7 +62,9 @@ public class DoctorDescription extends AppCompatActivity {
         Friday.setClickable(false);
 
         doctor = (Doctor) getIntent().getSerializableExtra("Doctor");
-        patient = (Patient) getIntent().getSerializableExtra("Person");
+        patient = (Patient) getIntent().getSerializableExtra("Patient");
+        System.out.println("----> : " +patient.getID());
+
 
         displayInfo(doctor);
 
@@ -70,8 +72,8 @@ public class DoctorDescription extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DoctorDescription.this,MakeAppointment.class);
-                intent.putExtra("Doctor",doctor);
                 intent.putExtra("Patient",patient);
+                intent.putExtra("Doctor",doctor);
                 startActivity(intent);
             }
         });
