@@ -41,7 +41,7 @@ android:layout_below="@+id/customCalendar"
         android:text="@string/ok"
         android:textColor="@color/heading"
         android:onClick="back"
-        ></Button>
+        />
 
 
 </RelativeLayout>

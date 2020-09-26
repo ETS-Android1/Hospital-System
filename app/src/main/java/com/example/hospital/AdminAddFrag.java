@@ -281,7 +281,7 @@ public class AdminAddFrag extends Fragment {
         String gender = rdGroup.getCheckedRadioButtonId() == R.id.rdmale ? "Male" : "Female";
         int mxApp= Integer.parseInt(text_maxApp.getEditText().getText().toString());
 
-        Doctor doctor = new Doctor("-1", name, phone, email, gender, birthDate, specialty, description,mxApp);
+        Doctor doctor = new Doctor("-1", name, phone, email, gender, birthDate, specialty, description,mxApp,pass);
         for(int i=0;i<7;i++)
         {
             if(daysCheck[i].isChecked())

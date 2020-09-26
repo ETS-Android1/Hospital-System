@@ -31,7 +31,7 @@ public class patientAppointments extends AppCompatActivity {
         setContentView(R.layout.activity_patient_appointments);
 
         patientAppointments = (ListView)findViewById(R.id.patient_appointments);
-        patient = (Patient) getIntent().getSerializableExtra("Patient");
+        patient = (Patient) getIntent().getSerializableExtra("Person");
 
 
         registerForContextMenu(patientAppointments);

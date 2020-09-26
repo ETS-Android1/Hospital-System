@@ -1,8 +1,6 @@
 package com.example.hospital;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavGraph;
-import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,7 +30,7 @@ public class DoctorsActivity extends AppCompatActivity {
         speciality = getIntent().getExtras().get("speciality").toString();
         ((TextView)findViewById(R.id.textView2)).setText(speciality);
 
-        patient = (Patient) getIntent().getSerializableExtra("Patient");
+        patient = (Patient) getIntent().getSerializableExtra("Person");
 
         getDoctors();
     }

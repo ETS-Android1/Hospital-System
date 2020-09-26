@@ -9,7 +9,7 @@
     <string name="todoo">TOD</string>
     <string name="profileimgg">profile</string>
     <string name="id">imguser</string>
-    <string name="doctor">Dr name</string>
+    <string name="doctor">Name</string>
     <string name="sepc">Specialty </string>
     <string name="nameid">nameid</string>
     <string name="email">Email</string>
@@ -42,7 +42,6 @@
 
     <string name="submitedit_id">Submit id</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="specialtyArray">
         <item>Dentist</item>

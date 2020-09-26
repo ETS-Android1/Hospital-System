@@ -11,20 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".Appointment_calen"/>
-        <activity android:name=".NavigateActivity"/>
+        <activity android:name=".Profile"/>
+        <activity android:name=".Appointment_calen" />
+        <activity android:name=".NavigateActivity" />
         <activity android:name=".admin" />
-        <activity android:name=".addTest"/>
-        <activity android:name=".Profile" />
+        <activity android:name=".addTest" />
         <activity android:name=".patientAppointments" />
         <activity android:name=".signUP" />
-        <activity android:name=".login" />
         <activity android:name=".MakeAppointment" />
         <activity android:name=".DoctorDescription" />
         <activity android:name=".DoctorsActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
+        <activity android:name=".login" >
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

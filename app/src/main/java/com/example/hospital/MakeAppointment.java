@@ -52,7 +52,7 @@ public class MakeAppointment extends AppCompatActivity {
         setContentView(R.layout.activity_make_appointment);
 
         doctor = (Doctor) getIntent().getSerializableExtra("Doctor");
-        patient = (Patient) getIntent().getSerializableExtra("Patient");
+        patient = (Patient) getIntent().getSerializableExtra("Person");
 
         dateText = (TextInputEditText) findViewById(R.id.date);
         dateText.setInputType(InputType.TYPE_NULL);

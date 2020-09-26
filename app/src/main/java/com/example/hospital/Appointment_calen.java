@@ -29,135 +29,92 @@ import java.util.Arrays;
 import java.util.Map;
 
 public class Appointment_calen extends AppCompatActivity {
-  private ResultSet resultSet;
-    private ResultSet resultSetnames;
-  private HashMap<String, ArrayList<Pair<String,Integer>>>arrofdates;
+    private HashMap<String, ArrayList<Pair<String, Integer>>> arrofdates;
 
-   private String nameofpatient;
-   private String[] arrofnames;
-       private   String[] dates;
-       private int ind=0;
-        private int idp;
-      private CustomCalendar customCalendarr;
-      public EventData eventdata;
-     public  Pair<String,Integer>tmp;
-    public ArrayList<Pair<String,Integer>>enterdate;
-    public ArrayList<EventData>arrayofevent;
+    private String nameofpatient;
+    private String[] arrofnames;
+    private String[] dates;
+    private int ind = 0;
+    private int idp;
+    private CustomCalendar customCalendarr;
+    public EventData eventdata;
+    public Pair<String, Integer> tmp;
+    public ArrayList<Pair<String, Integer>> enterdate;
+    public ArrayList<EventData> arrayofevent;
     public ArrayList<dataAboutDate> arrayofdata;
     public dataAboutDate dataabout;
     private Button bbb;
+    private Doctor doctor;
 
-private Connection connection =null;
+    private Connection connection = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-         super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment_calen);
 
-        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-
-
-
-        bbb=findViewById(R.id.okid);
-
-
-
-
-
+        bbb = findViewById(R.id.okid);
+        doctor = (Doctor) getIntent().getSerializableExtra("Person");
 
         customCalendarr = (CustomCalendar) findViewById(R.id.customCalendar);
-        arrofnames=new String[100];
-        dates=new String[100];
-        arrofdates=new HashMap<String, ArrayList<Pair<String,Integer>>>();
+        arrofnames = new String[100];
+        dates = new String[100];
+        arrofdates = new HashMap<String, ArrayList<Pair<String, Integer>>>();
         getappointments();
     }
 
-    public void   getappointments(){
-           if (DataBase.connection!=null)
-                                {
-    Statement statement= null;
-    try {
-
-         resultSet =DataBase.excutQuery("select date, patient_id, number_in_queue from Appiontment where doctor_id=9 ",this);
-
-
-         while(resultSet.next()){
-           //  int idd=resultSet.getInt("doctor_id");
-             idp=resultSet.getInt( "patient_id");
-             String num=resultSet.getString("number_in_queue");
-             String datee=resultSet.getString("date");
+    public void getappointments() {
+        ArrayList<Appointment> appointments = Appointment.getPatientAppointments("doctor_id", doctor.getID(), this);
+        for (Appointment appointment : appointments) {
+            //  int idd=resultSet.getInt("doctor_id");
+            idp = Integer.parseInt(appointment.getPatientID());
+            String num = String.valueOf(appointment.getNumberInQueue());
+            String datee = appointment.getDate();
 
 
-             tmp=new Pair<>(num,idp);
-             if (arrofdates.containsKey(datee)==false) {
-                 enterdate = new ArrayList<Pair<String,Integer>>();
-                 enterdate.add(tmp);
-                 arrofdates.put(datee, enterdate);
-                 dates[ind]=datee;
-                 ind++;
-             }
-             else {
-                 arrofdates.get(datee).add(tmp);
-             }
-           //  System.out.println("idd " +idd);
-             System.out.println("idp " +idp);
-             System.out.println("num " +num);
-             System.out.println(" dete" +datee);
-
-         }
-      Arrays.sort(dates,0,ind);
-     for (int i=0;i<ind;++i){
-            System.out.println(arrofdates.get(dates[i]));
-            int eventCount=arrofdates.get(dates[i]).size();
-               if (eventCount>3)
-                   eventCount=3;
-
-            customCalendarr.addAnEvent(dates[i],eventCount, getEventDataList(dates[i]));
+            tmp = new Pair<>(num, idp);
+            if (arrofdates.containsKey(datee) == false) {
+                enterdate = new ArrayList<Pair<String, Integer>>();
+                enterdate.add(tmp);
+                arrofdates.put(datee, enterdate);
+                dates[ind] = datee;
+                ind++;
+            } else {
+                arrofdates.get(datee).add(tmp);
+            }
+            //  System.out.println("idd " +idd);
+            System.out.println("idp " + idp);
+            System.out.println("num " + num);
+            System.out.println(" dete" + datee);
 
         }
 
-    } catch (SQLException e) {
-        e.printStackTrace();
+        Arrays.sort(dates, 0, ind);
+        for (int i = 0; i < ind; ++i) {
+            System.out.println(arrofdates.get(dates[i]));
+            int eventCount = arrofdates.get(dates[i]).size();
+            if (eventCount > 3)
+                eventCount = 3;
+
+            customCalendarr.addAnEvent(dates[i], eventCount, getEventDataList(dates[i]));
+        }
     }
 
-}
-else {
-    bbb.setText("null connection");
-}
-
-    }
 
     private ArrayList<EventData> getEventDataList(String date) {
-        arrayofevent=new ArrayList<EventData>();
-        for (int i=0;i<arrofdates.get(date).size();++i) {
-               idp=arrofdates.get(date).get(i).second;
-            if (DataBase.connection!=null)
-            {
+        arrayofevent = new ArrayList<EventData>();
+        for (int i = 0; i < arrofdates.get(date).size(); ++i) {
+            idp = arrofdates.get(date).get(i).second;
 
-                try {
+            Patient patient = Patient.getPatient("id", String.valueOf(idp), this);
+            nameofpatient = patient.getName();
+            System.out.println(" name" + nameofpatient);
 
 
-                    resultSetnames = DataBase.excutQuery("select name from Patient where id=" + idp,this);
-                       while(resultSetnames.next()){
-                      nameofpatient=resultSetnames.getString("name");
-                      System.out.println(" name" +nameofpatient);
-                      }
-                }
-                catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-            }
-            else {
-                bbb.setText("null connection");
-            }
-            arrayofdata=new ArrayList<dataAboutDate>(5);
-            dataabout= new dataAboutDate();
-            eventdata=new EventData();
+            arrayofdata = new ArrayList<dataAboutDate>(5);
+            dataabout = new dataAboutDate();
+            eventdata = new EventData();
 
 
             eventdata.setSection(arrofdates.get(date).get(i).first);//num inque
@@ -165,18 +122,15 @@ else {
             dataabout.setSubmissionDate("");
 
             dataabout.setSubject(nameofpatient);//name
-            dataabout.setRemarks("His/Her turn : " +arrofdates.get(date).get(i).first);
+            dataabout.setRemarks("His/Her turn : " + arrofdates.get(date).get(i).first);
             arrayofdata.add(dataabout);
             eventdata.setData(arrayofdata);
             arrayofevent.add(eventdata);
-
-
-
         }
         return arrayofevent;
     }
 
-    public void back(View view){
+    public void back(View view) {
         finish();
     }
 }

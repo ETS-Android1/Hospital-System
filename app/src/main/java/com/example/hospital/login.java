@@ -1,9 +1,13 @@
 package com.example.hospital;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +35,16 @@ public class login extends AppCompatActivity {
         text_signup=(TextView)findViewById(R.id.tsignup);
         remember_checkBox = (CheckBox) findViewById(R.id.remember_checkBox);
         loginButton = (Button) findViewById(R.id.buttonLogin);
-        forgetMe();
+
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        DataBase dataBase = new DataBase(this);
+
+        if(getIntent().getExtras() != null &&
+                getIntent().getExtras().get("deleteTable").toString().equals("1"))
+            forgetMe();
+
         rememberMe();
 
         text_signup.setOnClickListener(new View.OnClickListener() {
@@ -107,17 +120,20 @@ public class login extends AppCompatActivity {
         if(prev_doctor == 1)
         {
             user = Doctor.getDoctor(email ,"e_mail",this);
-            //Intent intent = new Intent(this,);
-            //startActivity(intent);
+            Intent intent = new Intent(this,Profile.class);
+            intent.putExtra("Person",user);
+            startActivity(intent);
+            finish();
         }
 
         if(prev_patient == 1)
         {
             user = (Person) Patient.getPatient("e_mail",email,this);
             Intent intent = new Intent(this,NavigateActivity.class);
-            intent.putExtra("Patient",user);
+            intent.putExtra("Person",user);
             intent.putExtra("pageIndex",1);
             startActivity(intent);
+            finish();
         }
     }
 

@@ -1,7 +1,6 @@
 package com.example.hospital;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -63,7 +62,7 @@ public class DoctorDescription extends AppCompatActivity {
         Friday.setClickable(false);
 
         doctor = (Doctor) getIntent().getSerializableExtra("Doctor");
-        patient = (Patient) getIntent().getSerializableExtra("Patient");
+        patient = (Patient) getIntent().getSerializableExtra("Person");
 
         displayInfo(doctor);
 

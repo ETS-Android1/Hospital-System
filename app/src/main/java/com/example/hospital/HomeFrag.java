@@ -82,11 +82,10 @@ public class HomeFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home,container,false);
-        ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+
+
         imageSlider = view.findViewById(R.id.imageSlider_frag);
-        patient = (Patient) getActivity().getIntent().getSerializableExtra("Patient");
+        patient = (Patient) getActivity().getIntent().getSerializableExtra("Person");
         viewSpecialities();
         slider(images);
         return view;
@@ -103,6 +102,7 @@ public class HomeFrag extends Fragment {
                 TableRow tableRow = new TableRow(getActivity());
 
                 while (resultSet.next()){
+        System.out.println("hnaaaaaaaaaaaaaaaaaaaaaaa");
                     col =  ++col % COL;
                     if(col == 0)
                     {
@@ -174,9 +174,6 @@ public class HomeFrag extends Fragment {
             }
 
         }
-        else
-        {
-        }
     }
 
     public void clickButton(String speciality)
@@ -194,7 +191,7 @@ public class HomeFrag extends Fragment {
             ImageView imageView = new ImageView(getActivity());
             imageView.setBackgroundResource(image);
             imageSlider.addView(imageView);
-            imageSlider.setFlipInterval(5000);
+            imageSlider.setFlipInterval(4000);
             imageSlider.setAutoStart(true);
             imageSlider.setInAnimation(getActivity(),android.R.anim.slide_in_left);
             imageSlider.setOutAnimation(getActivity(),android.R.anim.slide_out_right);

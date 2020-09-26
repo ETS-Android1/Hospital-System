@@ -34,7 +34,7 @@ public class addTest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_test);
 
-        patient = (Patient) getIntent().getSerializableExtra("Patient");
+        patient = (Patient) getIntent().getSerializableExtra("Person");
 
         addBTN = (Button) findViewById(R.id.addBTN);
         testName = (EditText) findViewById(R.id.testName);

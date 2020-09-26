@@ -3,6 +3,7 @@ package com.example.hospital;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -18,7 +19,7 @@ public class NavigateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigate);
 
-        patient = (Patient) getIntent().getSerializableExtra("Patient");
+        patient = (Patient) getIntent().getSerializableExtra("Person");
         pageIndex = Integer.parseInt(getIntent().getExtras().get("pageIndex").toString());
 
         TabLayout tabLayout=findViewById(R.id.tab_Layout);
@@ -48,4 +49,5 @@ public class NavigateActivity extends AppCompatActivity {
         viewPager.setCurrentItem(pageIndex);
         Toast.makeText(this,"Welcome " + patient.getName() ,Toast.LENGTH_LONG).show();
     }
+    
 }
