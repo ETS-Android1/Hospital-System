@@ -41,7 +41,7 @@ public class login extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         DataBase dataBase = new DataBase(this);
 
-        if(getIntent().getExtras() != null &&
+        if(getIntent().getExtras() != null && getIntent().getExtras().get("deleteTable") != null &&
                 getIntent().getExtras().get("deleteTable").toString().equals("1"))
             forgetMe();
 
